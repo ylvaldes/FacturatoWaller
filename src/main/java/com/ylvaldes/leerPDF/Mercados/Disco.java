@@ -137,16 +137,18 @@ public class Disco implements IMercados {
 						lineasPDF.get(postLey19).substring(posSPeso + 1, lineasPDF.get(postLey19).length()).trim())
 						* -1);
 			}
-
-			if (totalPagarPDF == totalSuma) {
-				log.info("Información de la Compra es Correcta");
-				if (ley > 0) {
-					registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha,
-							recurso.getMercado() + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani",
-							direccion));
-				}
-				excel.crearExcel(registros, recurso.getOutput(), recurso.getMercado(), fecha);
+			if (ley > 0) {
+				registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha,
+						recurso.getMercado() + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani",
+						direccion));
 			}
+			if (totalPagarPDF == totalSuma) {
+				log.info("-------------- Información de la Compra es Correcta");
+			}else {
+				log.info("-------------- Revisar Salida ");
+			}
+			
+			excel.crearExcel(registros, recurso.getOutput(), recurso.getMercado(), fecha);
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
@@ -207,7 +209,10 @@ public class Disco implements IMercados {
 		for (Compra compra : elementos) {
 			Registro registro = new Registro((compra.getPrecioCDescuento() * -1), moneda, "Aceite", fecha,
 					compra.toString() + " " + datosExtra, "Yasmani", direccion);
-			totalSuma += compra.getPrecioCDescuento();
+			if (!compra.getProducto().contains("Redonde")) {
+				totalSuma += compra.getPrecioCDescuento();
+			}
+			
 			log.info(registro.toString());
 			registros.add(registro);
 		}
