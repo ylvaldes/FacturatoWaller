@@ -196,7 +196,7 @@ public class Disco implements IMercados {
 				// Coincidió => obtener el valor del grupo 1
 				precioDescuento = matcherCantP.group(0);
 				precioDescuento = precioDescuento.replace(",", ".");
-				log.info("Precio con Descuento: " + precioDescuento);
+				log.info("Precio  con Descuento: " + precioDescuento);
 			}
 			String[] des = string.split("[0-9]{1,3}(\\,[0-9]{2})");
 			descripcion = des[1].toString().trim().substring(0, des[1].toString().length() - 4);
