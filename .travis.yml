@@ -6,6 +6,8 @@ cache:
 
 
 script: 
-  - mvn clean verify sonar:sonar
+  - mvn clean verify 
   - mvn clean install
-  - mvn sonar:sonar
+  
+ notifications:
+  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
