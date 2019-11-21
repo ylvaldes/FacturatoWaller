@@ -13,6 +13,7 @@ import com.ylvaldes.leerPDF.Mercados.AlmaNatural;
 import com.ylvaldes.leerPDF.Mercados.Devoto;
 import com.ylvaldes.leerPDF.Mercados.Disco;
 import com.ylvaldes.leerPDF.Mercados.Distravi;
+import com.ylvaldes.leerPDF.Mercados.ElNaranjo;
 import com.ylvaldes.leerPDF.Mercados.Tata;
 import com.ylvaldes.leerPDF.Utiles.LoadResourceConfLeerPDF;
 import com.ylvaldes.leerPDF.estadoCuentas.Itau;
@@ -59,6 +60,10 @@ public class leerPDF {
 		case "Itau":
 			Itau itau = new Itau();
 			itau.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
+			break;
+		case "ElNaranjo":
+			ElNaranjo elNaranjo = new ElNaranjo();
+			elNaranjo.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
 			break;
 		default:
 			break;
