@@ -15,5 +15,4 @@ script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=ylvaldes_FacturatoWaller
   
 notifications:
-  - webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
-  - slack: developerteamgrupo:IykMDkddgWiZEjsshJAiJeYx
+  slack: developerteamgrupo:kd8LLQGxDu70qJUENI3VPrgo
