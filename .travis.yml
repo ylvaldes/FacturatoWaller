@@ -16,3 +16,4 @@ script:
   
 notifications:
   slack: developerteamgrupo:kd8LLQGxDu70qJUENI3VPrgo
+  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
