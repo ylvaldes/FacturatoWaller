@@ -13,7 +13,7 @@ import com.ylvaldes.leerPDF.Mercados.AlmaNatural;
 import com.ylvaldes.leerPDF.Mercados.Devoto;
 import com.ylvaldes.leerPDF.Mercados.Disco;
 import com.ylvaldes.leerPDF.Mercados.Distravi;
-import com.ylvaldes.leerPDF.Mercados.ElNaranjo;
+import com.ylvaldes.leerPDF.Mercados.Scanntech;
 import com.ylvaldes.leerPDF.Mercados.Tata;
 import com.ylvaldes.leerPDF.Utiles.LoadResourceConfLeerPDF;
 import com.ylvaldes.leerPDF.estadoCuentas.Itau;
@@ -24,8 +24,6 @@ public class leerPDF {
 
 	private static String PDF = "";
 
-	
-
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParserConfigurationException {
 		// Obtiene las configuraciones Basicas de LoggerFactory
 		BasicConfigurator.configure();
@@ -34,42 +32,51 @@ public class leerPDF {
 		LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 		recurso.loadResourceConf();
 		PDF = "src/main/resources/" + recurso.getMercado() + ".pdf";
-		
 
 		switch (recurso.getMercado()) {
-		case "Tata":
-			Tata tata = new Tata();
-			tata.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
-			break;
-		case "Disco":
-			Disco disco = new Disco();
-			disco.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
-			break;
-		case "Distravi":
-			Distravi distravi = new Distravi();
-			distravi.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
-			break;
-		case "AlmaNatural":
-			AlmaNatural almaNatural = new AlmaNatural();
-			almaNatural.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
-			break;
-		case "Devoto":
-			Devoto devoto = new Devoto();
-			devoto.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
-			break;
-		case "Itau":
-			Itau itau = new Itau();
-			itau.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
-			break;
-		case "ElNaranjo":
-			ElNaranjo elNaranjo = new ElNaranjo();
-			elNaranjo.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
-			break;
-		default:
-			break;
+			case "Tata" :
+				Tata tata = new Tata();
+				tata.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
+				break;
+			case "Disco" :
+				Disco disco = new Disco();
+				disco.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
+				break;
+			case "Distravi" :
+				Distravi distravi = new Distravi();
+				distravi.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
+				break;
+			case "AlmaNatural" :
+				AlmaNatural almaNatural = new AlmaNatural();
+				almaNatural.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
+				break;
+			case "Devoto" :
+				Devoto devoto = new Devoto();
+				devoto.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
+				break;
+			case "Itau" :
+				Itau itau = new Itau();
+				itau.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
+				break;
+			case "ElNaranjo" :
+				Scanntech elNaranjo = new Scanntech();
+				elNaranjo.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
+				break;
+			case "Carnelandia" :
+				Scanntech carnelandia = new Scanntech();
+				carnelandia.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
+				break;
+			case "Montserrat" :
+				Scanntech montserrat = new Scanntech();
+				montserrat.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
+				break;
+			case "DonPaulino" :
+				Scanntech donPaulino = new Scanntech();
+				donPaulino.leerDatos(PDF, recurso.getOutput() + recurso.getMercado() + ".txt");
+				break;
+			default :
+				break;
 		}
-
-
 
 	}
 

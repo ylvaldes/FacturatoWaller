@@ -22,8 +22,8 @@ import com.ylvaldes.leerPDF.DAO.Registro;
 import com.ylvaldes.leerPDF.Utiles.LoadResourceConfLeerPDF;
 import com.ylvaldes.leerPDF.Utiles.UtilesString;
 
-public class ElNaranjo implements IMercados {
-	private static final Logger log = LoggerFactory.getLogger(ElNaranjo.class);
+public class Scanntech implements IMercados {
+	private static final Logger log = LoggerFactory.getLogger(Scanntech.class);
 	private final static LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 	private static DecimalFormat df2 = new DecimalFormat("#.##");
 	// Objetos
@@ -49,7 +49,7 @@ public class ElNaranjo implements IMercados {
 	double totalSuma;
 	double ley;
 
-	public ElNaranjo() {
+	public Scanntech() {
 		try {
 			// Inicializando Listas
 			lineasPDF = new ArrayList<String>();
@@ -112,7 +112,7 @@ public class ElNaranjo implements IMercados {
 			int posInicio = utilString.buscarString("Cajero:", lineasPDF);
 			int postFin = utilString.buscarString("TOTAL:", lineasPDF);
 			int posTotal = utilString.buscarString("TOTAL:", lineasPDF);
-			int postLey19 = utilString.buscarString("Desc. Ley   19210", lineasPDF);
+			int postLey19 = utilString.buscarString("VALE", lineasPDF);
 			int postCodSeg = utilString.buscarString("Codigo de seguridad:", lineasPDF);
 
 			codSeguridad = lineasPDF.get(postCodSeg).trim().split(":")[1];
@@ -126,8 +126,8 @@ public class ElNaranjo implements IMercados {
 			procesarCompra(lineasPDF.subList(posInicio + 1, postFin), datosExtra);
 
 			if (postLey19 > 0) {
-				log.info("Desc. Ley 19210: " + lineasPDF.get(postLey19).substring(29).trim());
-				ley = (Double.valueOf(lineasPDF.get(postLey19).substring(29).trim()) * -1);
+				log.info("Desc. Ley 19210: " + lineasPDF.get(postLey19).substring(7).trim());
+				ley = (Double.valueOf(lineasPDF.get(postLey19).substring(7).trim()) );
 			}
 
 			if (totalPagarPDF == totalSuma) {
