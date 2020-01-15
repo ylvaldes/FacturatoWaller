@@ -45,7 +45,7 @@ public class leerPDF {
 		url = url.substring(47, url.length());
 		List<String> result = Arrays.asList(url.split("\\s*,\\s*"));
 		System.out.println();
-		System.out.println("Dtos Obtenido de la URL:");
+		System.out.print("Dtos Obtenido de la URL: ");
 		System.out.println(result.toString());
 
 		switch (result.get(0)) {
