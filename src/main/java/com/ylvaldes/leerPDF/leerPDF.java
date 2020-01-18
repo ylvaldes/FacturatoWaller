@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 
 import com.ylvaldes.leerPDF.Mercados.AlmaNatural;
 import com.ylvaldes.leerPDF.Mercados.Devoto;
+import com.ylvaldes.leerPDF.Mercados.DevotoE;
 import com.ylvaldes.leerPDF.Mercados.Disco;
 import com.ylvaldes.leerPDF.Mercados.Distravi;
 import com.ylvaldes.leerPDF.Mercados.Scanntech;
@@ -98,11 +99,12 @@ public class leerPDF {
 
 				PDF = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-				Devoto devotoExpres = new Devoto();
+				DevotoE devotoExpres = new DevotoE();
 				devotoExpres.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
 				break;
-			// Devoto Express
-			// 210650500016
+				
+			// Devoto
+			// 210297450018
 			case "210297450018" :
 				mercado = "Devoto";
 				log.info("Mercado Devoto Express");

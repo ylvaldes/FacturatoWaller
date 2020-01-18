@@ -22,8 +22,8 @@ import com.ylvaldes.leerPDF.DAO.Registro;
 import com.ylvaldes.leerPDF.Utiles.LoadResourceConfLeerPDF;
 import com.ylvaldes.leerPDF.Utiles.UtilesString;
 
-public class Devoto implements IMercados {
-	private static final Logger log = LoggerFactory.getLogger(Devoto.class);
+public class DevotoE implements IMercados {
+	private static final Logger log = LoggerFactory.getLogger(DevotoE.class);
 	private final static LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 	private static DecimalFormat df2 = new DecimalFormat("#.##");
 	// Objetos
@@ -50,7 +50,7 @@ public class Devoto implements IMercados {
 	double totalSuma;
 	double ley;
 
-	public Devoto() {
+	public DevotoE() {
 		try {
 			// Inicializando Listas
 			lineasPDF = new ArrayList<String>();
@@ -94,24 +94,24 @@ public class Devoto implements IMercados {
 			
 			lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
 			lineasPDF = lineasPDF.subList(1, lineasPDF.size());
-			rut = lineasPDF.get(3);
-			eTicket = lineasPDF.get(1).trim();
-			serie = lineasPDF.get(10).trim();
-			log.info("Moneda: " + lineasPDF.get(7));
-			moneda = lineasPDF.get(7);
-			log.debug("Fecha: " + lineasPDF.get(5));
+			rut = lineasPDF.get(9);
+			eTicket = lineasPDF.get(7).trim();
+			serie = lineasPDF.get(12).trim().split(" ")[0];
+			log.info("Moneda: " + lineasPDF.get(3).substring(0, 3));
+			moneda = lineasPDF.get(3).substring(0, 3);
+			log.debug("Fecha: " + lineasPDF.get(3).substring(4, 14));
 
 			log.debug("Direccion: " + lineasPDF.get(16));
 			direccion = lineasPDF.get(16);
 
-			int posInicio = utilString.buscarString("MontoCantidadDetalleIVA", lineasPDF);
+			int posInicio = utilString.buscarString("MONTOCANTIDAD", lineasPDF);
 			int postFin = utilString.buscarString("TOTALES", lineasPDF);
 			int posTotal = utilString.buscarString("Pago total", lineasPDF);
-			int postLey19 = utilString.buscarString("Desc. Ley  19210", lineasPDF);
+			int postLey19 = utilString.buscarString("Desc. Ley   19210", lineasPDF);
 			int postFechaHora = utilString.buscarString("No.Ticket", lineasPDF);
 			int postCodSeg = utilString.buscarString("Cod. de Seguridad:", lineasPDF);
 
-			codSeguridad = lineasPDF.get(postCodSeg).trim().split(":")[1].trim();
+			codSeguridad = lineasPDF.get(postCodSeg).trim().split(":")[1];
 
 			log.info(lineasPDF.get(postFechaHora + 1).split("       ")[1]);
 			try {
