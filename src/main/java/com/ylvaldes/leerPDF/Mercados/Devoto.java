@@ -45,6 +45,7 @@ public class Devoto implements IMercados {
 	String codSeguridad;
 	String datosExtra;
 	Date fecha;
+	String mercado;
 	double totalPagarPDF;
 	double totalSuma;
 	double ley;
@@ -58,6 +59,7 @@ public class Devoto implements IMercados {
 
 			// Inicializando Variables
 			moneda = "";
+			mercado = "";
 			direccion = "";
 			rut = "";
 			eTicket = "";
@@ -88,12 +90,9 @@ public class Devoto implements IMercados {
 		try {
 			log.debug("Entrada: " + filename);
 			txt = new Txt(filename, output);
-
-			try {
-				lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
-			} catch (IOException e1) {
-				log.error(e1.getMessage());
-			}
+			mercado=output.substring(11, output.length()-4);
+			
+			lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
 			lineasPDF = lineasPDF.subList(1, lineasPDF.size());
 			rut = lineasPDF.get(9);
 			eTicket = lineasPDF.get(7).trim();
@@ -142,10 +141,10 @@ public class Devoto implements IMercados {
 				log.info("Información de la Compra es Correcta");
 				if (ley > 0) {
 					registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha,
-							recurso.getMercado() + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani",
+							mercado + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani",
 							direccion));
 				}
-				excel.crearExcel(registros, recurso.getOutput(), recurso.getMercado(), fecha);
+				excel.crearExcel(registros, recurso.getOutput(), mercado, fecha);
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage());
@@ -201,7 +200,7 @@ public class Devoto implements IMercados {
 			log.info("Descripcion: " + descripcion);
 			elementos.add(new Compra(Double.valueOf(cantidad),
 					Double.valueOf(precioOriginal) + Double.valueOf(precioDescuento), Double.valueOf(precioOriginal),
-					descripcion));
+					descripcion,mercado));
 
 		}
 		for (Compra compra : elementos) {

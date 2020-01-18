@@ -1,0 +1,520 @@
+{
+  "id": "0a436d78-370f-4925-831b-33c4993cba9c",
+  "version": "2.0",
+  "name": "Tata",
+  "url": "http://efactura1.scanntech.com/products.eticket.consultaQR/",
+  "tests": [{
+    "id": "d7cc723e-d065-4cd3-b12e-3f9e4260e48c",
+    "name": "Tata",
+    "commands": [{
+      "id": "66b7a6f2-c69f-46bf-8689-61f33f05b4d5",
+      "comment": "",
+      "command": "open",
+      "target": "http://www.institucional.tata.com.uy/consulta-e-ticket",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9728b089-d895-4888-b600-2a6bbe9f56fd",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1066",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2764b5d4-8f23-4a1a-972f-a4454a60f789",
+      "comment": "",
+      "command": "selectFrame",
+      "target": "index=0",
+      "targets": [
+        ["index=0"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9109b67-2d48-4316-8598-c16176969979",
+      "comment": "",
+      "command": "type",
+      "target": "name=RUT",
+      "targets": [
+        ["name=RUT", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='RUT']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "210003270017"
+    }, {
+      "id": "dd2b6a1c-de57-4032-b56c-7e40df6ee1b2",
+      "comment": "",
+      "command": "select",
+      "target": "name=TipoCFE",
+      "targets": [],
+      "value": "label=101 Ticket"
+    }, {
+      "id": "25260638-6cd4-4371-b923-74bb0a1c1751",
+      "comment": "",
+      "command": "type",
+      "target": "name=Serie",
+      "targets": [
+        ["name=Serie", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='Serie']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "QO"
+    }, {
+      "id": "9ce853ad-1a08-4772-b657-42a0f54d0cae",
+      "comment": "",
+      "command": "type",
+      "target": "name=Numero",
+      "targets": [
+        ["name=Numero", "name"],
+        ["css=tr:nth-child(4) input", "css:finder"],
+        ["xpath=//input[@name='Numero']", "xpath:attributes"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": "750203"
+    }, {
+      "id": "2e00a8c8-844a-4baa-bb1b-7401a4a1459b",
+      "comment": "",
+      "command": "type",
+      "target": "name=Total",
+      "targets": [
+        ["name=Total", "name"],
+        ["css=tr:nth-child(5) input", "css:finder"],
+        ["xpath=//input[@name='Total']", "xpath:attributes"],
+        ["xpath=//tr[5]/td[2]/input", "xpath:position"]
+      ],
+      "value": "562"
+    }, {
+      "id": "886faa81-18ae-4e5e-9045-dea08e93f025",
+      "comment": "",
+      "command": "type",
+      "target": "name=Hash6",
+      "targets": [
+        ["name=Hash6", "name"],
+        ["css=tr:nth-child(6) input", "css:finder"],
+        ["xpath=//input[@name='Hash6']", "xpath:attributes"],
+        ["xpath=//tr[6]/td[2]/input", "xpath:position"]
+      ],
+      "value": "UCSjof"
+    }, {
+      "id": "3f855210-9b12-4a56-9d02-bf92a94755cf",
+      "comment": "",
+      "command": "click",
+      "target": "name=Enviar",
+      "targets": [
+        ["name=Enviar", "name"],
+        ["css=input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='Enviar']", "xpath:attributes"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": "",
+      "opensWindow": true,
+      "windowHandleName": "win276",
+      "windowTimeout": 2000
+    }, {
+      "id": "05e0c425-646b-458e-b641-a90ca8be2bf6",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${win276}",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "62877dfa-dfb3-4dd8-a8d1-a7a0afca034d",
+    "name": "Disco",
+    "commands": [{
+      "id": "fac4967f-9837-41f3-8d01-8a92a4b85fdc",
+      "comment": "",
+      "command": "open",
+      "target": "https://institucional.disco.com.uy/index.php/consulta-cfe",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "af3c8663-e77b-4247-be70-04ea2fdd35b7",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1900x1030",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "728f3674-2e20-46f7-90bd-990c4143042a",
+      "comment": "",
+      "command": "selectFrame",
+      "target": "index=0",
+      "targets": [
+        ["index=0"]
+      ],
+      "value": ""
+    }, {
+      "id": "c15882a4-24bd-440f-adba-61bdac7b2d28",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=rut",
+      "targets": [
+        ["id=rut", "id"],
+        ["name=rut", "name"],
+        ["css=#rut", "css:finder"],
+        ["xpath=//input[@id='rut']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/table/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ec39b828-6361-491c-b76f-4fa0e4a31154",
+      "comment": "",
+      "command": "type",
+      "target": "name=rut",
+      "targets": [
+        ["name=RUT", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='RUT']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "210274130017"
+    }, {
+      "id": "26981157-794d-42f2-9af2-7818d152c4af",
+      "comment": "",
+      "command": "select",
+      "target": "name=TipoCFE",
+      "targets": [],
+      "value": "label=101 Ticket"
+    }, {
+      "id": "d20b30e1-e835-4586-9e81-1259fb27454d",
+      "comment": "",
+      "command": "type",
+      "target": "name=Serie",
+      "targets": [
+        ["name=Serie", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='Serie']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/table/tbody/tr[3]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "AQ"
+    }, {
+      "id": "ae80608f-50db-454c-9138-2c276e6b3894",
+      "comment": "",
+      "command": "type",
+      "target": "name=Numero",
+      "targets": [
+        ["name=Numero", "name"],
+        ["css=tr:nth-child(4) input", "css:finder"],
+        ["xpath=//input[@name='Numero']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/table/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": "6452191"
+    }, {
+      "id": "7f55f90b-845f-4dee-a923-f6197535a313",
+      "comment": "",
+      "command": "type",
+      "target": "name=Total",
+      "targets": [
+        ["name=Total", "name"],
+        ["css=tr:nth-child(5) input", "css:finder"],
+        ["xpath=//input[@name='Total']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/table/tbody/tr[5]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[2]/input", "xpath:position"]
+      ],
+      "value": "400.00"
+    }, {
+      "id": "aaac658c-c7ae-48c2-9f27-03c528d23ce6",
+      "comment": "",
+      "command": "type",
+      "target": "name=Hash6",
+      "targets": [
+        ["name=Hash6", "name"],
+        ["css=tr:nth-child(6) input", "css:finder"],
+        ["xpath=//input[@name='Hash6']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/table/tbody/tr[6]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[6]/td[2]/input", "xpath:position"]
+      ],
+      "value": "VjIERn"
+    }, {
+      "id": "7f9fd0fb-cb60-444a-abf1-7e0ab545689b",
+      "comment": "",
+      "command": "click",
+      "target": "id=Consultar",
+      "targets": [
+        ["id=Consultar", "id"],
+        ["name=Consultar", "name"],
+        ["css=#Consultar", "css:finder"],
+        ["xpath=//input[@id='Consultar']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": "",
+      "opensWindow": true,
+      "windowHandleName": "win6744",
+      "windowTimeout": 2000
+    }, {
+      "id": "ee63a8c4-84ef-4d91-b725-7afea050e6d1",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${win6744}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a893a6f9-84ce-4227-9bb1-1a7a9504979e",
+      "comment": "",
+      "command": "",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "a51044ab-7780-4250-a54e-eeadf121132c",
+    "name": "Devoto",
+    "commands": [{
+      "id": "53089b61-7c97-4f47-9b6c-e324a5c94a20",
+      "comment": "",
+      "command": "open",
+      "target": "https://www.devoto.com.uy/consulte-su-ticket",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2ea85676-d6de-4031-b41a-728ee33d98fd",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1066",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8f05fe83-2639-4884-9df4-fb9b190d8303",
+      "comment": "",
+      "command": "select",
+      "target": "name=RUT",
+      "targets": [],
+      "value": "label=Devoto Express"
+    }, {
+      "id": "de5b8bbe-61c9-413e-8d49-36a435d7b7be",
+      "comment": "",
+      "command": "select",
+      "target": "name=TipoCFE",
+      "targets": [],
+      "value": "label=101 Ticket"
+    }, {
+      "id": "13cc8168-c526-441e-ba28-1e842d6fe768",
+      "comment": "",
+      "command": "type",
+      "target": "name=Serie",
+      "targets": [
+        ["name=Serie", "name"],
+        ["css=.form-field:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='Serie']", "xpath:attributes"],
+        ["xpath=//form[@id='form1']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "J"
+    }, {
+      "id": "7d1fc807-57cb-4167-b61e-df8f256a44fa",
+      "comment": "",
+      "command": "type",
+      "target": "name=Numero",
+      "targets": [
+        ["name=Numero", "name"],
+        ["css=.form-field:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='Numero']", "xpath:attributes"],
+        ["xpath=//form[@id='form1']/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "5800306"
+    }, {
+      "id": "161da9a5-ba93-4952-b266-07968ff25430",
+      "comment": "",
+      "command": "type",
+      "target": "name=Total",
+      "targets": [
+        ["name=Total", "name"],
+        ["css=.form-field:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='Total']", "xpath:attributes"],
+        ["xpath=//form[@id='form1']/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "307.63"
+    }, {
+      "id": "9172ad8b-13e3-4334-9dc4-ad0b8b423248",
+      "comment": "",
+      "command": "type",
+      "target": "name=Hash6",
+      "targets": [
+        ["name=Hash6", "name"],
+        ["css=.form-field:nth-child(6) > input", "css:finder"],
+        ["xpath=//input[@name='Hash6']", "xpath:attributes"],
+        ["xpath=//form[@id='form1']/div[6]/input", "xpath:idRelative"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "TxCQNv"
+    }, {
+      "id": "46515129-e53b-4cae-879c-71d3b412f351",
+      "comment": "",
+      "command": "click",
+      "target": "name=Enviar",
+      "targets": [
+        ["name=Enviar", "name"],
+        ["css=.submit > input", "css:finder"],
+        ["xpath=//input[@name='Enviar']", "xpath:attributes"],
+        ["xpath=//form[@id='form1']/div[7]/input", "xpath:idRelative"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "",
+      "opensWindow": true,
+      "windowHandleName": "win8505",
+      "windowTimeout": 2000
+    }, {
+      "id": "c7d22ed6-4475-4789-abb4-35b08065bc48",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${win8505}",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "bde0ca75-ea56-4cd4-8468-987cce6f78cf",
+    "name": "Scantech",
+    "commands": [{
+      "id": "0155d410-8d68-4a37-a9d6-49b6183d396b",
+      "comment": "",
+      "command": "open",
+      "target": "http://efactura1.scanntech.com/products.eticket.consultaQR/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "eb504da6-f7e8-4da0-a416-c6d072c41fd7",
+      "comment": "",
+      "command": "type",
+      "target": "id=rut",
+      "targets": [
+        ["id=rut", "id"],
+        ["name=rut", "name"],
+        ["css=#rut", "css:finder"],
+        ["xpath=//input[@id='rut']", "xpath:attributes"],
+        ["xpath=//form[@id='homeForm']/fieldset/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "211229400017"
+    }, {
+      "id": "5c3a7712-eb79-470c-8b15-da0949f43eb5",
+      "comment": "",
+      "command": "select",
+      "target": "id=tipoCfe",
+      "targets": [],
+      "value": "label=e-Ticket"
+    }, {
+      "id": "dfa1a5bb-ef71-4ef3-b894-f4e7ae75e73b",
+      "comment": "",
+      "command": "type",
+      "target": "id=serie",
+      "targets": [
+        ["id=serie", "id"],
+        ["name=serie", "name"],
+        ["css=#serie", "css:finder"],
+        ["xpath=//input[@id='serie']", "xpath:attributes"],
+        ["xpath=//form[@id='homeForm']/fieldset[3]/div/div/input", "xpath:idRelative"],
+        ["xpath=//fieldset[3]/div/div/input", "xpath:position"]
+      ],
+      "value": "A"
+    }, {
+      "id": "6abb5c14-9db7-4d5b-ab76-9635b800420a",
+      "comment": "",
+      "command": "type",
+      "target": "id=nroCFE",
+      "targets": [
+        ["id=nroCFE", "id"],
+        ["name=nroCFE", "name"],
+        ["css=#nroCFE", "css:finder"],
+        ["xpath=//input[@id='nroCFE']", "xpath:attributes"],
+        ["xpath=//form[@id='homeForm']/fieldset[4]/div/div/input", "xpath:idRelative"],
+        ["xpath=//fieldset[4]/div/div/input", "xpath:position"]
+      ],
+      "value": "542977"
+    }, {
+      "id": "35646d16-22e8-4c23-96fe-de0fc5d0ce42",
+      "comment": "",
+      "command": "type",
+      "target": "id=monto",
+      "targets": [
+        ["id=monto", "id"],
+        ["name=monto", "name"],
+        ["css=#monto", "css:finder"],
+        ["xpath=//input[@id='monto']", "xpath:attributes"],
+        ["xpath=//form[@id='homeForm']/fieldset[5]/div/div/input", "xpath:idRelative"],
+        ["xpath=//fieldset[5]/div/div/input", "xpath:position"]
+      ],
+      "value": "1749.96"
+    }, {
+      "id": "b00569f3-564f-44fd-af34-d03dd802a404",
+      "comment": "",
+      "command": "type",
+      "target": "id=fecha",
+      "targets": [
+        ["id=fecha", "id"],
+        ["name=fecha", "name"],
+        ["css=#fecha", "css:finder"],
+        ["xpath=//input[@id='fecha']", "xpath:attributes"],
+        ["xpath=//form[@id='homeForm']/fieldset[6]/div/div/input", "xpath:idRelative"],
+        ["xpath=//fieldset[6]/div/div/input", "xpath:position"]
+      ],
+      "value": "18/12/2019"
+    }, {
+      "id": "64f3d0f8-92b1-4af9-8ea2-ff436af2328d",
+      "comment": "",
+      "command": "type",
+      "target": "id=hash",
+      "targets": [
+        ["id=hash", "id"],
+        ["name=hash", "name"],
+        ["css=#hash", "css:finder"],
+        ["xpath=//input[@id='hash']", "xpath:attributes"],
+        ["xpath=//form[@id='homeForm']/fieldset[7]/div/div/input", "xpath:idRelative"],
+        ["xpath=//fieldset[7]/div/div/input", "xpath:position"]
+      ],
+      "value": "HagY3E"
+    }, {
+      "id": "f28d79b7-773b-416f-9d99-e18434a5856f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@value='Enviar']", "xpath:attributes"],
+        ["xpath=//form[@id='homeForm']/fieldset[8]/div/div/input", "xpath:idRelative"],
+        ["xpath=//fieldset[8]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fc9f0549-12f6-43b0-b994-9b3e3fa4c3f8",
+      "comment": "",
+      "command": "click",
+      "target": "name=pdf",
+      "targets": [
+        ["name=pdf", "name"],
+        ["css=input", "css:finder"],
+        ["xpath=//input[@name='pdf']", "xpath:attributes"],
+        ["xpath=//form[@id='command']/table/tbody/tr[38]/td/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "",
+      "opensWindow": true,
+      "windowHandleName": "win6107",
+      "windowTimeout": 2000
+    }, {
+      "id": "1e9a0fff-6ca8-4728-bbc1-8fa733518b9a",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${win6107}",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "1bcf697e-9566-40ed-bbf3-d39e6bf83f3f",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["d7cc723e-d065-4cd3-b12e-3f9e4260e48c"]
+  }],
+  "urls": ["http://www.institucional.tata.com.uy/consulta-e-ticket", "https://institucional.disco.com.uy/index.php/consulta-cfe", "https://www.devoto.com.uy/consulte-su-ticket", "http://efactura1.scanntech.com/products.eticket.consultaQR/"],
+  "plugins": []
+}

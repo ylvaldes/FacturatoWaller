@@ -71,11 +71,7 @@ public class Itau implements IEstadosCuenta {
 		log.debug("Entrada: " + filename);
 		txt = new Txt(filename, output);
 
-		try {
-			lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
-		} catch (IOException e1) {
-			log.error(e1.getMessage());
-		}
+		lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
 		log.debug("Nombre: " + lineasPDF.get(2));
 		nombre = lineasPDF.get(2);
 		log.debug("Fecha de Emisión: " + lineasPDF.get(1).split(" ")[1]);

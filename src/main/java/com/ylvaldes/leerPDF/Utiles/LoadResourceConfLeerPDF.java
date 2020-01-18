@@ -11,23 +11,19 @@ import org.slf4j.LoggerFactory;
 public class LoadResourceConfLeerPDF {
 	private static final Logger log = LoggerFactory.getLogger(LoadResourceConfLeerPDF.class);
 
-	String mercado;
+
+	String resourse;
 	String output;
 	String patternFormatH;
 	String patternFormatS;
-
-	/**
-	 * @return the mercado
-	 */
-	public String getMercado() {
-		return mercado;
+	
+	
+	public String getResourse() {
+		return resourse;
 	}
 
-	/**
-	 * @param mercado the mercado to set
-	 */
-	public void setMercado(String mercado) {
-		this.mercado = mercado;
+	public void setResourse(String resourse) {
+		this.resourse = resourse;
 	}
 
 	/**
@@ -84,7 +80,7 @@ public class LoadResourceConfLeerPDF {
 		 */
 		InputStream is = classLoader.getResourceAsStream("leerPDF.properties");
 		properties.load(is);
-		mercado = (String) properties.get("mercado");
+		resourse = (String) properties.get("resourse");
 		output = (String) properties.get("output");
 		patternFormatH = (String) properties.get("patternFormatH");
 		patternFormatS = (String) properties.get("patternFormatS");

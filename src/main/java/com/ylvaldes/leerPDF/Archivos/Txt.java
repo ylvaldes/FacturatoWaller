@@ -1,7 +1,6 @@
 package com.ylvaldes.leerPDF.Archivos;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -20,27 +19,34 @@ public class Txt {
 		this.output = output;
 	}
 
-	public String crearTxt() throws FileNotFoundException, IOException {
+	public String crearTxt()  {
 		File f = new File(filename);
-		String parsedText;
-		PDFParser parser = new PDFParser(new RandomAccessFile(f, "r"));
-		parser.parse();
+		String parsedText="";
+		PDFParser parser;
+		try {
+			if (f.exists() && f.isFile()) {
+				parser = new PDFParser(new RandomAccessFile(f, "r"));
+				parser.parse();
+				COSDocument cosDoc = parser.getDocument();
 
-		COSDocument cosDoc = parser.getDocument();
+				PDFTextStripper pdfStripper = new PDFTextStripper();
+				PDDocument pdDoc = new PDDocument(cosDoc);
 
-		PDFTextStripper pdfStripper = new PDFTextStripper();
-		PDDocument pdDoc = new PDDocument(cosDoc);
+				parsedText = pdfStripper.getText(pdDoc);
+				if (cosDoc != null)
+					cosDoc.close();
+				if (pdDoc != null)
+					pdDoc.close();
 
-		parsedText = pdfStripper.getText(pdDoc);
-
-		if (cosDoc != null)
-			cosDoc.close();
-		if (pdDoc != null)
-			pdDoc.close();
-
-		PrintWriter pw = new PrintWriter(output, "utf-8");
-		pw.print(parsedText);
-		pw.close();
+				PrintWriter pw = new PrintWriter(output, "utf-8");
+				pw.print(parsedText);
+				pw.close();
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return parsedText;
 	}
 }

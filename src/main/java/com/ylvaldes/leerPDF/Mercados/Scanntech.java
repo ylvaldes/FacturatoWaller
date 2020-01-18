@@ -38,6 +38,7 @@ public class Scanntech implements IMercados {
 
 	// Variables
 	String moneda;
+	String mercado;
 	String direccion;
 	String rut;
 	String eTicket;
@@ -58,6 +59,7 @@ public class Scanntech implements IMercados {
 
 			// Inicializando Variables
 			moneda = "";
+			mercado = "";
 			direccion = "";
 			rut = "";
 			eTicket = "";
@@ -88,12 +90,9 @@ public class Scanntech implements IMercados {
 		try {
 			log.debug("Entrada: " + filename);
 			txt = new Txt(filename, output);
+			mercado=output.substring(11, output.length()-4);
 
-			try {
-				lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
-			} catch (IOException e1) {
-				log.error(e1.getMessage());
-			}
+			lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
 			rut = lineasPDF.get(1).split(":")[1].trim();
 			eTicket = lineasPDF.get(5).split(" ")[2];
 			serie = lineasPDF.get(5).split(" ")[1];
@@ -108,11 +107,11 @@ public class Scanntech implements IMercados {
 
 			log.debug("Direccion: " + lineasPDF.get(2));
 			direccion = lineasPDF.get(2);
-
+			String idLey19 = (rut.equals("211229400017"))?"VALE":(rut.equals("214634020016")?"Ley 1920":"LOLO");
 			int posInicio = utilString.buscarString("Cajero:", lineasPDF);
 			int postFin = utilString.buscarString("TOTAL:", lineasPDF);
 			int posTotal = utilString.buscarString("TOTAL:", lineasPDF);
-			int postLey19 = utilString.buscarString("VALE", lineasPDF);
+			int postLey19 = utilString.buscarString(idLey19, lineasPDF);
 			int postCodSeg = utilString.buscarString("Codigo de seguridad:", lineasPDF);
 
 			codSeguridad = lineasPDF.get(postCodSeg).trim().split(":")[1];
@@ -127,17 +126,15 @@ public class Scanntech implements IMercados {
 
 			if (postLey19 > 0) {
 				log.info("Desc. Ley 19210: " + lineasPDF.get(postLey19).substring(7).trim());
-				ley = (Double.valueOf(lineasPDF.get(postLey19).substring(7).trim()) );
+				ley = (Double.valueOf(lineasPDF.get(postLey19).substring(7).trim()));
 			}
 
 			if (totalPagarPDF == totalSuma) {
 				log.info("Información de la Compra es Correcta");
 				if (ley > 0) {
-					registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha,
-							recurso.getMercado() + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani",
-							direccion));
+					registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha, mercado + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani", direccion));
 				}
-				excel.crearExcel(registros, recurso.getOutput(), recurso.getMercado(), fecha);
+				excel.crearExcel(registros, recurso.getOutput(), mercado, fecha);
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage());
@@ -153,12 +150,12 @@ public class Scanntech implements IMercados {
 			String precioOriginal = "";
 			String precioDescuento = "";
 			String descripcion = "";
-			String string1="";
+			String string1 = "";
 			String string = compras.get(i);
-			if (i+1< compras.size()) {
+			if (i + 1 < compras.size()) {
 				string1 = compras.get(i + 1);
 			}
-			
+
 			Matcher matcherSegElemento = patternSegElemento.matcher(string1);
 
 			// Sobre el String entrado por parametro hacer un Split por espacio
@@ -195,14 +192,11 @@ public class Scanntech implements IMercados {
 
 			log.info("Cantidad de Producto: " + cantidad);
 
-			elementos.add(new Compra(Double.valueOf(cantidad),
-					Double.valueOf(precioOriginal) + Double.valueOf(precioDescuento), Double.valueOf(precioOriginal),
-					descripcion));
+			elementos.add(new Compra(Double.valueOf(cantidad), Double.valueOf(cantidad) * Double.valueOf(precioOriginal), Double.valueOf(precioDescuento), descripcion, mercado));
 
 		}
 		for (Compra compra : elementos) {
-			Registro registro = new Registro((compra.getPrecioCDescuento() * -1), moneda, "Aceite", fecha,
-					compra.toString() + " " + datosExtra, "Yasmani", direccion);
+			Registro registro = new Registro((compra.getPrecioCDescuento() * -1), moneda, "Aceite", fecha, compra.toString() + " " + datosExtra, "Yasmani", direccion);
 			totalSuma += compra.getPrecioCDescuento();
 			log.info(registro.toString());
 			registros.add(registro);

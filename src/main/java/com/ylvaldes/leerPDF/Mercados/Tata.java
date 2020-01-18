@@ -48,6 +48,7 @@ public class Tata implements IMercados {
 	double totalPagarPDF;
 	double totalSuma;
 	double ley;
+	String mercado;
 
 	public Tata() {
 		try {
@@ -68,6 +69,7 @@ public class Tata implements IMercados {
 			totalSuma = 0.0;
 			ley = 0.0;
 			fecha = new Date();
+			mercado="";
 
 			// Inicializando Objetos de Clases
 			excel = new Excel();
@@ -87,12 +89,10 @@ public class Tata implements IMercados {
 	public void leerDatos(String filename, String output) {
 		log.debug("Entrada: " + filename);
 		txt = new Txt(filename, output);
+		mercado=output.substring(11, output.length()-4);
 
-		try {
-			lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
-		} catch (IOException e1) {
-			log.error(e1.getMessage());
-		}
+		lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
+
 		rut = lineasPDF.get(3);
 		eTicket = lineasPDF.get(1).split(" ")[1];
 		serie = lineasPDF.get(9).trim().split(" ")[0];
@@ -116,19 +116,16 @@ public class Tata implements IMercados {
 		log.info(lineasPDF.get(postFechaHora + 1).split("   ")[1]);
 		try {
 			if (lineasPDF.get(postFechaHora + 1).split("   ")[1] == " ") {
-				fecha = new SimpleDateFormat(recurso.getPatternFormatH())
-						.parse(lineasPDF.get(postFechaHora + 1).split("   ")[1]);
+				fecha = new SimpleDateFormat(recurso.getPatternFormatH()).parse(lineasPDF.get(postFechaHora + 1).split("   ")[1]);
 			} else {
-				fecha = new SimpleDateFormat(recurso.getPatternFormatH())
-						.parse(lineasPDF.get(postFechaHora + 1).split("   ")[2]);
+				fecha = new SimpleDateFormat(recurso.getPatternFormatH()).parse(lineasPDF.get(postFechaHora + 1).split("   ")[2]);
 			}
 		} catch (ParseException e) {
 			log.error(e.getMessage());
 		}
 
 		log.info("TOTAL A PAGAR: " + lineasPDF.get(posTotal).substring(13).trim());
-		totalPagarPDF = Double.valueOf(lineasPDF.get(posTotal).substring(13).trim()
-				.substring(1, lineasPDF.get(posTotal).substring(13).trim().length()).trim());
+		totalPagarPDF = Double.valueOf(lineasPDF.get(posTotal).substring(13).trim().substring(1, lineasPDF.get(posTotal).substring(13).trim().length()).trim());
 
 		datosExtra = utilString.datosExtra(rut, eTicket, serie, codSeguridad, totalPagarPDF);
 
@@ -137,17 +134,15 @@ public class Tata implements IMercados {
 		if (postLey19 > 0) {
 			log.info("Desc. Ley 19210: " + lineasPDF.get(postLey19).substring(29).trim());
 			int posSPeso = lineasPDF.get(postLey19).indexOf("$");
-			ley = (Double.valueOf(
-					lineasPDF.get(postLey19).substring(posSPeso + 1, lineasPDF.get(postLey19).length()).trim()) * -1);
+			ley = (Double.valueOf(lineasPDF.get(postLey19).substring(posSPeso + 1, lineasPDF.get(postLey19).length()).trim()) * -1);
 		}
 
 		if (totalPagarPDF == totalSuma) {
 			log.info("Información de la Compra es Correcta");
 			if (ley > 0) {
-				registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha,
-						recurso.getMercado() + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani", direccion));
+				registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha, mercado + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani", direccion));
 			}
-			excel.crearExcel(registros, recurso.getOutput(), recurso.getMercado(), fecha);
+			excel.crearExcel(registros, recurso.getOutput(), mercado, fecha);
 		}
 
 	}
@@ -196,14 +191,11 @@ public class Tata implements IMercados {
 			String[] des = string.split("[0-9]{1,3}(\\,[0-9]{2})");
 			descripcion = des[1].toString().trim().substring(0, des[1].toString().length() - 4);
 			log.info("Descripcion: " + descripcion);
-			elementos
-					.add(new Compra(Double.valueOf(cantidad), Double.valueOf(cantidad) * Double.valueOf(precioOriginal),
-							Double.valueOf(precioDescuento), descripcion));
+			elementos.add(new Compra(Double.valueOf(cantidad), Double.valueOf(cantidad) * Double.valueOf(precioOriginal), Double.valueOf(precioDescuento), descripcion, mercado));
 
 		}
 		for (Compra compra : elementos) {
-			Registro registro = new Registro((compra.getPrecioCDescuento() * -1), moneda, "Aceite", fecha,
-					compra.toString() + " " + datosExtra, "Yasmani", direccion);
+			Registro registro = new Registro((compra.getPrecioCDescuento() * -1), moneda, "Aceite", fecha, compra.toString() + " " + datosExtra, "Yasmani", direccion);
 			totalSuma += compra.getPrecioCDescuento();
 			log.info(registro.toString());
 			registros.add(registro);
@@ -214,8 +206,8 @@ public class Tata implements IMercados {
 
 	public List<Registro> detectarCategoria(List<Registro> regs) {
 
-		List<String> categorias = Arrays.asList("Aceite", "Agua", "Arroz", "Azucar", "Bolsa", "Cafe", "Chorizo",
-				"Dulces", "Fiambre", "Hamburguesas", "Harina", "Huevos", "Jugos", "Pizza", "Quesos", "Sal", "Vinagre");
+		List<String> categorias = Arrays.asList("Aceite", "Agua", "Arroz", "Azucar", "Bolsa", "Cafe", "Chorizo", "Dulces", "Fiambre", "Hamburguesas", "Harina", "Huevos", "Jugos", "Pizza", "Quesos",
+				"Sal", "Vinagre");
 
 		for (Registro registro : regs) {
 			if (registro.getDescripcion().contains(moneda)) {

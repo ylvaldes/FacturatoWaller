@@ -1,7 +1,5 @@
 package com.ylvaldes.leerPDF.DAO;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.text.DecimalFormat;
 
 import com.ylvaldes.leerPDF.Utiles.LoadResourceConfLeerPDF;
@@ -14,46 +12,39 @@ public class Compra {
 	double precioCDescuento;
 	double precioSDescuento;
 	String producto;
+	String mercado;
 
-	public Compra(double cantidad, double precioSDescuento, double precioCDescuento, String producto) {
+	public Compra(double cantidad, double precioSDescuento, double precioCDescuento, String producto,String mercado) {
 		super();
 		this.cantidad = cantidad;
 		this.precioCDescuento = precioCDescuento;
 		this.precioSDescuento = precioSDescuento;
 		this.producto = producto;
+		this.mercado=mercado;
 
 	}
 
-	@Override
 	public String toString() {
-		try {
-			recurso.loadResourceConf();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		// Operador Ternario
 		return (precioCDescuento == precioSDescuento)
 				// true
 				? (cantidad % 1 == 0)
 						// true
-						? recurso.getMercado() + "\n" + "Compra " + cantidad + " " + producto + " precio U "
+						? mercado + "\n" + "Compra " + cantidad + " " + producto + " precio U "
 								+ df2.format(precioSDescuento / cantidad) + " precio Total "
 								+ df2.format(precioSDescuento)
 						// false
-						: recurso.getMercado() + "\n" + "Compra " + cantidad + " Kg " + producto + " precio U "
+						: mercado + "\n" + "Compra " + cantidad + " Kg " + producto + " precio U "
 								+ df2.format(precioSDescuento / cantidad) + " precio Total "
 								+ df2.format(precioSDescuento)
 				// false
 				: (cantidad % 1 == 0)
 						// true
-						? recurso.getMercado() + "\n" + "Compra " + cantidad + " " + producto + " precio U "
+						? mercado + "\n" + "Compra " + cantidad + " " + producto + " precio U "
 								+ df2.format(precioCDescuento / cantidad) + " precio Total " + precioCDescuento
 								+ " Descuento de " + df2.format(((precioSDescuento) - precioCDescuento))
 						// false
-						: recurso.getMercado() + "\n" + "Compra " + cantidad + " Kg " + producto + " precio U "
+						: mercado + "\n" + "Compra " + cantidad + " Kg " + producto + " precio U "
 								+ df2.format(precioCDescuento / cantidad) + " precio Total " + precioCDescuento
 								+ " Descuento de " + df2.format(((precioSDescuento) - precioCDescuento));
 	}

@@ -45,6 +45,7 @@ public class Disco implements IMercados {
 	String codSeguridad;
 	String datosExtra;
 	Date fecha;
+	String mercado;
 	double totalPagarPDF;
 	double totalSuma;
 	double ley;
@@ -58,6 +59,7 @@ public class Disco implements IMercados {
 
 			// Inicializando Variables
 			moneda = "";
+			mercado = "";
 			direccion = "";
 			rut = "";
 			eTicket = "";
@@ -88,12 +90,9 @@ public class Disco implements IMercados {
 		try {
 			log.debug("Entrada: " + filename);
 			txt = new Txt(filename, output);
+			mercado=output.substring(11, output.length()-4);
 
-			try {
-				lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
-			} catch (IOException e1) {
-				log.error(e1.getMessage());
-			}
+			lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
 			lineasPDF = lineasPDF.subList(1, lineasPDF.size());
 			rut = lineasPDF.get(3);
 			eTicket = lineasPDF.get(1).trim();
@@ -139,7 +138,7 @@ public class Disco implements IMercados {
 			}
 			if (ley > 0) {
 				registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha,
-						recurso.getMercado() + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani", direccion));
+						mercado + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani", direccion));
 			}
 			if (totalPagarPDF == totalSuma) {
 				log.info("-------------- Información de la Compra es Correcta");
@@ -147,7 +146,7 @@ public class Disco implements IMercados {
 				log.info("-------------- Revisar Salida ");
 			}
 
-			excel.crearExcel(registros, recurso.getOutput(), recurso.getMercado(), fecha);
+			excel.crearExcel(registros, recurso.getOutput(), mercado, fecha);
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
@@ -201,9 +200,7 @@ public class Disco implements IMercados {
 			String[] des = string.split("[0-9]{1,3}(\\,[0-9]{2})");
 			descripcion = des[1].toString().trim().substring(0, des[1].toString().length() - 4);
 			log.info("Descripcion: " + descripcion);
-			elementos.add(new Compra(Double.valueOf(cantidad),
-					Double.valueOf(precioOriginal) + Double.valueOf(precioDescuento), Double.valueOf(precioOriginal),
-					descripcion));
+			elementos.add(new Compra(Double.valueOf(cantidad), Double.valueOf(cantidad) * Double.valueOf(precioOriginal), Double.valueOf(precioDescuento),descripcion, mercado));
 
 		}
 		for (Compra compra : elementos) {
