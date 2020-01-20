@@ -2,7 +2,7 @@
   "id": "0a436d78-370f-4925-831b-33c4993cba9c",
   "version": "2.0",
   "name": "Tata",
-  "url": "http://efactura1.scanntech.com/products.eticket.consultaQR/",
+  "url": "http://www.etickets.com.uy/Sluckis",
   "tests": [{
     "id": "d7cc723e-d065-4cd3-b12e-3f9e4260e48c",
     "name": "Tata",
@@ -506,6 +506,127 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "ba0f299e-6d38-41a8-887b-9b43d7c614a9",
+    "name": "Sluckis",
+    "commands": [{
+      "id": "9ea61c17-929c-4913-b664-a1da78a21983",
+      "comment": "",
+      "command": "open",
+      "target": "http://www.etickets.com.uy/Sluckis",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "464dd1a0-d389-4365-89c3-eddb9e999f19",
+      "comment": "",
+      "command": "type",
+      "target": "id=serie",
+      "targets": [
+        ["id=serie", "id"],
+        ["name=serie", "name"],
+        ["css=#serie", "css:finder"],
+        ["xpath=//input[@id='serie']", "xpath:attributes"],
+        ["xpath=//form[@id='contact-form']/ul/li[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "A"
+    }, {
+      "id": "2a5b22c2-b063-486b-a18e-a940b3845af1",
+      "comment": "",
+      "command": "type",
+      "target": "id=num",
+      "targets": [
+        ["id=num", "id"],
+        ["name=num", "name"],
+        ["css=#num", "css:finder"],
+        ["xpath=//input[@id='num']", "xpath:attributes"],
+        ["xpath=//form[@id='contact-form']/ul/li[4]/input", "xpath:idRelative"],
+        ["xpath=//li[4]/input", "xpath:position"]
+      ],
+      "value": "466242"
+    }, {
+      "id": "21cb07b3-e23f-4bed-b091-79a6a52f696c",
+      "comment": "",
+      "command": "type",
+      "target": "id=ammount",
+      "targets": [
+        ["id=ammount", "id"],
+        ["name=ammount", "name"],
+        ["css=#ammount", "css:finder"],
+        ["xpath=//input[@id='ammount']", "xpath:attributes"],
+        ["xpath=//form[@id='contact-form']/ul/li[6]/input", "xpath:idRelative"],
+        ["xpath=//li[6]/input", "xpath:position"]
+      ],
+      "value": "138"
+    }, {
+      "id": "fe44215e-c36c-4269-829b-339aec6b7f1c",
+      "comment": "",
+      "command": "type",
+      "target": "id=code",
+      "targets": [
+        ["id=code", "id"],
+        ["name=code", "name"],
+        ["css=#code", "css:finder"],
+        ["xpath=//input[@id='code']", "xpath:attributes"],
+        ["xpath=//form[@id='contact-form']/ul/li[7]/input", "xpath:idRelative"],
+        ["xpath=//li[7]/input", "xpath:position"]
+      ],
+      "value": "i6GjRp"
+    }, {
+      "id": "c04c3cc5-a122-4be6-b199-6ab347b8f8d2",
+      "comment": "",
+      "command": "click",
+      "target": "id=type",
+      "targets": [
+        ["id=type", "id"],
+        ["name=type", "name"],
+        ["css=#type", "css:finder"],
+        ["xpath=//select[@id='type']", "xpath:attributes"],
+        ["xpath=//form[@id='contact-form']/ul/li[9]/select", "xpath:idRelative"],
+        ["xpath=//li[9]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "acb7ff89-8039-40ad-b49a-cdd5bb6169ac",
+      "comment": "",
+      "command": "click",
+      "target": "id=type",
+      "targets": [
+        ["id=type", "id"],
+        ["name=type", "name"],
+        ["css=#type", "css:finder"],
+        ["xpath=//select[@id='type']", "xpath:attributes"],
+        ["xpath=//form[@id='contact-form']/ul/li[9]/select", "xpath:idRelative"],
+        ["xpath=//li[9]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bafe0ef3-60d2-4d02-a0d1-bac0c7cfe28b",
+      "comment": "",
+      "command": "click",
+      "target": "id=sub",
+      "targets": [
+        ["id=sub", "id"],
+        ["name=submit", "name"],
+        ["css=#sub", "css:finder"],
+        ["xpath=//input[@id='sub']", "xpath:attributes"],
+        ["xpath=//form[@id='contact-form']/ul/li[10]/input", "xpath:idRelative"],
+        ["xpath=//li[10]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7224074e-c252-426f-b807-915801216d86",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(1) > span:nth-child(2)",
+      "targets": [
+        ["css=li:nth-child(1) > span:nth-child(2)", "css:finder"],
+        ["xpath=//span[@onclick='pdf()']", "xpath:attributes"],
+        ["xpath=//form[@id='contact-form']/ul/li/span[2]", "xpath:idRelative"],
+        ["xpath=//span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "1bcf697e-9566-40ed-bbf3-d39e6bf83f3f",
@@ -515,6 +636,6 @@
     "timeout": 300,
     "tests": ["d7cc723e-d065-4cd3-b12e-3f9e4260e48c"]
   }],
-  "urls": ["http://www.institucional.tata.com.uy/consulta-e-ticket", "https://institucional.disco.com.uy/index.php/consulta-cfe", "https://www.devoto.com.uy/consulte-su-ticket", "http://efactura1.scanntech.com/products.eticket.consultaQR/"],
+  "urls": ["http://www.institucional.tata.com.uy/consulta-e-ticket", "https://institucional.disco.com.uy/index.php/consulta-cfe", "https://www.devoto.com.uy/consulte-su-ticket", "http://efactura1.scanntech.com/products.eticket.consultaQR/", "http://www.etickets.com.uy/Sluckis"],
   "plugins": []
 }

@@ -23,10 +23,12 @@ import com.ylvaldes.leerPDF.Mercados.Disco;
 import com.ylvaldes.leerPDF.Mercados.Distravi;
 import com.ylvaldes.leerPDF.Mercados.Frog;
 import com.ylvaldes.leerPDF.Mercados.Scanntech;
+import com.ylvaldes.leerPDF.Mercados.Sluckis;
 import com.ylvaldes.leerPDF.Mercados.Tata;
 import com.ylvaldes.leerPDF.ObtenerPDF.DevotoTest;
 import com.ylvaldes.leerPDF.ObtenerPDF.DiscoTest;
 import com.ylvaldes.leerPDF.ObtenerPDF.ScantechTest;
+import com.ylvaldes.leerPDF.ObtenerPDF.SluckisTest;
 import com.ylvaldes.leerPDF.ObtenerPDF.TataTest;
 import com.ylvaldes.leerPDF.Utiles.LoadResourceConfLeerPDF;
 import com.ylvaldes.leerPDF.estadoCuentas.Itau;
@@ -52,8 +54,8 @@ public class leerPDF {
 		String mercado = "";
 		Scanner teclado = new Scanner(System.in);
 		log.info("URL Scaneada: ");
-		String url = teclado.nextLine();
-
+		// String url = teclado.nextLine();
+		String url = "https://www.efactura.dgi.gub.uy/consultaQR/cfe?210301960011,101,A,466242,138,16/11/2019,i6GjRpxxOCYe4rY76ce2JsT2xtM%3d";
 		url = url.substring(47, url.length());
 		List<String> result = Arrays.asList(url.split("\\s*,\\s*"));
 		Integer num = 0;
@@ -78,6 +80,25 @@ public class leerPDF {
 				PDF = recurso.getResourse() + result.get(1) + result.get(2) + num.toString() + ".pdf";
 				Frog frog = new Frog();
 				frog.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
+				break;
+
+			// Sluckis
+			// 210301960011
+			case "210301960011" :
+				mercado = "Sluckis";
+				log.info("Mercado: " + mercado);
+				num = Integer.parseInt(result.get(3));
+				try {
+					if (!new File(recurso.getResourse() + "/" + result.get(0) + "-" + result.get(3) + ".pdf").exists()) {
+						SluckisTest sluckisTest = new SluckisTest();
+						sluckisTest.sluckis(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
+					}
+				} catch (Exception e) {
+					log.error(e.getMessage());
+				}
+				PDF = recurso.getResourse() + result.get(0) + "-" + result.get(3) + ".pdf";
+				Sluckis sluckis = new Sluckis();
+				sluckis.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
 				break;
 			// TATA
 			// 210003270017
