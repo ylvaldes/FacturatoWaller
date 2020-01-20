@@ -165,17 +165,19 @@ public class leerPDF {
 			// 214634020016
 			case "214634020016" :
 				mercado = "ElNaranjo";
-				log.info("Mercado El Naranjo");
+				log.info("Mercado: " + mercado);
 
 				try {
 					// Descarga el Fichero
 
-					ScantechTest elNaranjoTest = new ScantechTest();
 					Date d;
 					d = format2.parse(result.get(5));
 					String fecha = format.format(d);
-					elNaranjoTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-
+					num = Integer.parseInt(result.get(3));
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						ScantechTest elNaranjoTest = new ScantechTest();
+						elNaranjoTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+					}
 					// Renombrar el Fichero
 					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
 					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
@@ -195,13 +197,17 @@ public class leerPDF {
 			// 211229400017
 			case "211229400017" :
 				mercado = "Carnelandia";
+				log.info("Mercado: " + mercado);
 				try {
-					ScantechTest elNaranjoTest = new ScantechTest();
+
 					Date d;
 					d = format2.parse(result.get(5));
 					String fecha = format.format(d);
-					elNaranjoTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-
+					num = Integer.parseInt(result.get(3));
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						ScantechTest carnelandiaTest = new ScantechTest();
+						carnelandiaTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+					}
 					// Renombrar el Fichero
 					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
 					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
@@ -221,13 +227,17 @@ public class leerPDF {
 			// 213304860012
 			case "213304860012" :
 				mercado = "SuperAriel";
+				log.info("Mercado: " + mercado);
 				try {
-					ScantechTest superArielTest = new ScantechTest();
+
 					Date d;
 					d = format3.parse(result.get(5).replace("%2F", ""));
 					String fecha = format.format(d);
-					superArielTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-
+					num = Integer.parseInt(result.get(3));
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						ScantechTest superArielTest = new ScantechTest();
+						superArielTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+					}
 					// Renombrar el Fichero
 					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
 					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
@@ -246,13 +256,17 @@ public class leerPDF {
 			// 214783760011
 			case "214783760011" :
 				mercado = "PanaderiaMontserrat";
+				log.info("Mercado: " + mercado);
 				try {
-					ScantechTest montserratTest = new ScantechTest();
+
 					Date d;
 					d = format2.parse(result.get(5));
 					String fecha = format.format(d);
-					montserratTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-
+					num = Integer.parseInt(result.get(3));
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						ScantechTest montserratTest = new ScantechTest();
+						montserratTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+					}
 					// Renombrar el Fichero
 					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
 					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
