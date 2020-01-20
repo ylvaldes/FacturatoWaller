@@ -303,8 +303,31 @@ public class leerPDF {
 			// 211412910010
 			case "211412910010" :
 				mercado = "DonPaulino";
-				Scanntech donPaulino = new Scanntech();
-				donPaulino.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
+				log.info("Mercado: " + mercado);
+				try {
+					Date d;
+					d = format2.parse(result.get(5));
+					String fecha = format.format(d);
+					num = Integer.parseInt(result.get(3));
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						ScantechTest mercadoNaturalTest = new ScantechTest();
+						mercadoNaturalTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+					}
+
+					// Renombrar el Fichero
+					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
+					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					file.renameTo(file2);
+
+					PDF = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+
+					Scanntech donPaulino = new Scanntech();
+					donPaulino.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
+				} catch (ParseException e) {
+					log.error(e.getMessage());
+				} catch (Exception e) {
+					log.error(e.getMessage());
+				}
 				break;
 
 			// Distravi
