@@ -82,6 +82,12 @@ public class TataTest {
     // 11 | selectWindow | handle=${win276} |  | 
     driver.findElement(By.name("Enviar")).click();
     vars.put("win276", waitForWindow(2000));
+    try {
+		Thread.sleep(2000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     driver.switchTo().window(vars.get("win276").toString());
     
     tearDown();

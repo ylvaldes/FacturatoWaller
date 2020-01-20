@@ -22,8 +22,8 @@ import com.ylvaldes.leerPDF.DAO.Registro;
 import com.ylvaldes.leerPDF.Utiles.LoadResourceConfLeerPDF;
 import com.ylvaldes.leerPDF.Utiles.UtilesString;
 
-public class Tata implements IMercados {
-	private static final Logger log = LoggerFactory.getLogger(Tata.class);
+public class Frog implements IMercados {
+	private static final Logger log = LoggerFactory.getLogger(Frog.class);
 	private final static LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 	private static DecimalFormat df2 = new DecimalFormat("#.##");
 	// Objetos
@@ -50,7 +50,7 @@ public class Tata implements IMercados {
 	double ley;
 	String mercado;
 
-	public Tata() {
+	public Frog() {
 		try {
 			// Inicializando Listas
 			lineasPDF = new ArrayList<String>();
@@ -69,7 +69,7 @@ public class Tata implements IMercados {
 			totalSuma = 0.0;
 			ley = 0.0;
 			fecha = new Date();
-			mercado="";
+			mercado = "";
 
 			// Inicializando Objetos de Clases
 			excel = new Excel();
@@ -89,22 +89,22 @@ public class Tata implements IMercados {
 	public void leerDatos(String filename, String output) {
 		log.debug("Entrada: " + filename);
 		txt = new Txt(filename, output);
-		mercado=output.substring(11, output.length()-4);
+		mercado = output.substring(11, output.length() - 4);
 
 		lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
 
-		rut = lineasPDF.get(3);
-		eTicket = lineasPDF.get(1).split(" ")[1];
-		serie = lineasPDF.get(9).trim().split(" ")[0];
+		rut = lineasPDF.get(9);
+		eTicket = lineasPDF.get(7);
+		serie = lineasPDF.get(12).trim().split(" ")[0];
 
-		log.info("Moneda: " + lineasPDF.get(7));
-		moneda = lineasPDF.get(7);
-		log.debug("Fecha: " + lineasPDF.get(5));
+		log.info("Moneda: " + lineasPDF.get(3).substring(0, 3));
+		moneda = lineasPDF.get(3).substring(0, 3);
+		log.debug("Fecha: " + lineasPDF.get(3).substring(4, lineasPDF.get(3).length() - 1));
 
-		log.debug("Direccion: " + lineasPDF.get(16));
-		direccion = lineasPDF.get(16);
+		log.debug("Direccion: " + lineasPDF.get(15));
+		direccion = lineasPDF.get(15);
 
-		int posInicio = utilString.buscarString("MontoCantidad", lineasPDF);
+		int posInicio = utilString.buscarString("MONTOCANTIDAD", lineasPDF);
 		int postFin = utilString.buscarString("TOTALES", lineasPDF);
 		int posTotal = utilString.buscarString("Pago total", lineasPDF);
 		int postLey19 = utilString.buscarString("Desc. Ley   19210", lineasPDF);
@@ -113,9 +113,9 @@ public class Tata implements IMercados {
 
 		codSeguridad = lineasPDF.get(postCodSeg).trim().split(":")[1].trim();
 
-		log.info(lineasPDF.get(postFechaHora + 1).split("   ")[1]);
+		log.info(lineasPDF.get(postFechaHora + 1).split("   ")[2]);
 		try {
-			if (lineasPDF.get(postFechaHora + 1).split("   ")[1] == " ") {
+			if (lineasPDF.get(postFechaHora + 1).split("   ")[2] == " ") {
 				fecha = new SimpleDateFormat(recurso.getPatternFormatH()).parse(lineasPDF.get(postFechaHora + 1).split("   ")[1]);
 			} else {
 				fecha = new SimpleDateFormat(recurso.getPatternFormatH()).parse(lineasPDF.get(postFechaHora + 1).split("   ")[2]);
@@ -163,34 +163,33 @@ public class Tata implements IMercados {
 
 			// Se obtiene la Cantidad de elementos comprados
 			patternCantP = Pattern.compile("[0-9]{1,2}(\\,[0-9]{3})", Pattern.CASE_INSENSITIVE);
-			Matcher matcherCantP = patternCantP.matcher("0" + a[a.length - 2]);
+			Matcher matcherCantP = patternCantP.matcher("0" + a[a.length - 4]);
 			if (matcherCantP.find()) {
 				// Coincidió => obtener el valor del grupo 1
+
 				cantidad = matcherCantP.group(0);
 				cantidad = cantidad.replace(",", ".");
 				log.info("Cantidad de Producto: " + cantidad);
 			}
 			// Obtiene el precio Original del producto
-			patternCantP = Pattern.compile("([0-9]{1,3})*(\\.)*[0-9]{1,3}(\\,[0-9]{2})", Pattern.CASE_INSENSITIVE);
-			matcherCantP = patternCantP.matcher(string);
+			patternCantP = Pattern.compile("[0-9]{1,3}(\\,[0-9]{2})", Pattern.CASE_INSENSITIVE);
+			matcherCantP = patternCantP.matcher(a[0]);
 			if (matcherCantP.find()) {
 				// Coincidió => obtener el valor del grupo 1
 				precioOriginal = matcherCantP.group(0);
-				precioOriginal=precioOriginal.replace(".", "");
 				precioOriginal = precioOriginal.replace(",", ".");
 				log.info("Precio Original: " + precioOriginal);
 			}
 			// Obtiene el precio con descuento del producto
-			patternCantP = Pattern.compile("([0-9]{1,3})*(\\.)*[0-9]{1,3}(\\,[0-9]{2})", Pattern.CASE_INSENSITIVE);
-			matcherCantP = patternCantP.matcher(a[a.length - 1]);
+			patternCantP = Pattern.compile("[0-9]{1,3}(\\,[0-9]{2})", Pattern.CASE_INSENSITIVE);
+			matcherCantP = patternCantP.matcher(a[a.length - 3]);
 			if (matcherCantP.find()) {
 				// Coincidió => obtener el valor del grupo 1
 				precioDescuento = matcherCantP.group(0);
-				precioDescuento=precioDescuento.replace(".", "");
 				precioDescuento = precioDescuento.replace(",", ".");
-				log.info("Precio con Descuento: " + precioDescuento);
+				log.info("Precio  con Descuento: " + precioDescuento);
 			}
-			String[] des = string.split("([0-9]{1,3})*(\\.)*[0-9]{1,3}(\\,[0-9]{2})");
+			String[] des = string.split("[0-9]{1,3}(\\,[0-9]{2})");
 			descripcion = des[1].toString().trim().substring(0, des[1].toString().length() - 4);
 			log.info("Descripcion: " + descripcion);
 			elementos.add(new Compra(Double.valueOf(cantidad), Double.valueOf(cantidad) * Double.valueOf(precioOriginal), Double.valueOf(precioDescuento), descripcion, mercado));

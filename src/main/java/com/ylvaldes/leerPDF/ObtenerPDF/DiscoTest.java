@@ -86,6 +86,12 @@ public class DiscoTest {
 		// 12 | selectWindow | handle=${win6744} | |
 		driver.findElement(By.id("Consultar")).click();
 		vars.put("win6744", waitForWindow(2000));
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver.switchTo().window(vars.get("win6744").toString());
 		
 		tearDown();

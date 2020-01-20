@@ -21,6 +21,7 @@ import com.ylvaldes.leerPDF.Mercados.Devoto;
 import com.ylvaldes.leerPDF.Mercados.DevotoE;
 import com.ylvaldes.leerPDF.Mercados.Disco;
 import com.ylvaldes.leerPDF.Mercados.Distravi;
+import com.ylvaldes.leerPDF.Mercados.Frog;
 import com.ylvaldes.leerPDF.Mercados.Scanntech;
 import com.ylvaldes.leerPDF.Mercados.Tata;
 import com.ylvaldes.leerPDF.ObtenerPDF.DevotoTest;
@@ -55,22 +56,44 @@ public class leerPDF {
 
 		url = url.substring(47, url.length());
 		List<String> result = Arrays.asList(url.split("\\s*,\\s*"));
-
+		Integer num = 0;
 		log.info("Dtos Obtenido de la URL: ");
 		log.info(result.toString());
 
 		switch (result.get(0)) {
+			// Frog
+			// 214214350013
+			case "214214350013" :
+				mercado = "Frog";
+				log.info("Mercado: " + mercado);
+				num = Integer.parseInt(result.get(3));
+				try {
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						TataTest frogTest = new TataTest();
+						frogTest.tata(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
+					}
+				} catch (Exception e) {
+					log.error(e.getMessage());
+				}
+				PDF = recurso.getResourse() + result.get(1) + result.get(2) + num.toString() + ".pdf";
+				Frog frog = new Frog();
+				frog.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
+				break;
 			// TATA
 			// 210003270017
 			case "210003270017" :
 				mercado = "Tata";
-				log.info("Mercado TATA");
-				TataTest tataTest = new TataTest();
-				Integer num = Integer.parseInt(result.get(3));
-				tataTest.tata(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
-
+				log.info("Mercado: " + mercado);
+				num = Integer.parseInt(result.get(3));
+				try {
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						TataTest tataTest = new TataTest();
+						tataTest.tata(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
+					}
+				} catch (Exception e) {
+					log.error(e.getMessage());
+				}
 				PDF = recurso.getResourse() + result.get(1) + result.get(2) + num.toString() + ".pdf";
-
 				Tata tata = new Tata();
 				tata.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
 				break;
@@ -79,9 +102,16 @@ public class leerPDF {
 			// 210274130017
 			case "210274130017" :
 				mercado = "Disco";
-				log.info("Mercado DISCO");
-				DiscoTest discoTest = new DiscoTest();
-				discoTest.disco(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
+				log.info("Mercado: " + mercado);
+				num = Integer.parseInt(result.get(3));
+				try {
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						DiscoTest discoTest = new DiscoTest();
+						discoTest.disco(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
+					}
+				} catch (Exception e) {
+					log.error(e.getMessage());
+				}
 
 				PDF = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
@@ -93,9 +123,16 @@ public class leerPDF {
 			// 210650500016
 			case "210650500016" :
 				mercado = "DevotoE";
-				log.info("Mercado Devoto Express");
-				DevotoTest devotoExpresTest = new DevotoTest();
-				devotoExpresTest.devoto(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
+				log.info("Mercado: " + mercado);
+				num = Integer.parseInt(result.get(3));
+				try {
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						DevotoTest devotoExpresTest = new DevotoTest();
+						devotoExpresTest.devoto(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
+					}
+				} catch (Exception e) {
+					log.error(e.getMessage());
+				}
 
 				PDF = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
@@ -107,9 +144,16 @@ public class leerPDF {
 			// 210297450018
 			case "210297450018" :
 				mercado = "Devoto";
-				log.info("Mercado Devoto Express");
-				DevotoTest devotoTest = new DevotoTest();
-				devotoTest.devoto(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
+				log.info("Mercado: " + mercado);
+				num = Integer.parseInt(result.get(3));
+				try {
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						DevotoTest devotoTest = new DevotoTest();
+						devotoTest.devoto(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
+					}
+				} catch (Exception e) {
+					log.error(e.getMessage());
+				}
 
 				PDF = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
@@ -201,7 +245,7 @@ public class leerPDF {
 			// Montserrat Panaderia
 			// 214783760011
 			case "214783760011" :
-				mercado = "Montserrat";
+				mercado = "PanaderiaMontserrat";
 				try {
 					ScantechTest montserratTest = new ScantechTest();
 					Date d;
@@ -216,7 +260,6 @@ public class leerPDF {
 
 					PDF = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-					mercado = "PanaderiaMontserrat";
 					Scanntech montserrat = new Scanntech();
 					montserrat.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
 				} catch (ParseException e) {
@@ -225,6 +268,37 @@ public class leerPDF {
 
 				break;
 
+			// Mercado Natural
+			// 215058860011
+			case "215058860011" :
+				mercado = "MercadoNatural";
+				log.info("Mercado: " + mercado);
+				try {
+					Date d;
+					d = format3.parse(result.get(5).replace("%2F", ""));
+					String fecha = format.format(d);
+					num = Integer.parseInt(result.get(3));
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						ScantechTest mercadoNaturalTest = new ScantechTest();
+						mercadoNaturalTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+					}
+
+					// Renombrar el Fichero
+					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
+					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					file.renameTo(file2);
+
+					PDF = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+
+					Scanntech mercadoNatural = new Scanntech();
+					mercadoNatural.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
+				} catch (ParseException e) {
+					log.error(e.getMessage());
+				} catch (Exception e) {
+					log.error(e.getMessage());
+				}
+
+				break;
 			// DonPaulino
 			// 211412910010
 			case "211412910010" :

@@ -107,7 +107,7 @@ public class Scanntech implements IMercados {
 
 			log.debug("Direccion: " + lineasPDF.get(2));
 			direccion = lineasPDF.get(2);
-			String idLey19 = (rut.equals("211229400017"))?"VALE":(rut.equals("214634020016")?"Ley 1920":"LOLO");
+			String idLey19 = (rut.equals("211229400017")||rut.equals("215058860011"))?"VALE":(rut.equals("214634020016")?"Ley 1920":"LOLO");
 			int posInicio = utilString.buscarString("Cajero:", lineasPDF);
 			int postFin = utilString.buscarString("TOTAL:", lineasPDF);
 			int posTotal = utilString.buscarString("TOTAL:", lineasPDF);
