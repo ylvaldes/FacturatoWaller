@@ -54,8 +54,8 @@ public class leerPDF {
 		String mercado = "";
 		Scanner teclado = new Scanner(System.in);
 		log.info("URL Scaneada: ");
-		// String url = teclado.nextLine();
-		String url = "https://www.efactura.dgi.gub.uy/consultaQR/cfe?210301960011,101,A,466242,138,16/11/2019,i6GjRpxxOCYe4rY76ce2JsT2xtM%3d";
+		String url = teclado.nextLine();
+		//String url = "https://www.efactura.dgi.gub.uy/consultaQR/cfe?210301960011,101,A,466242,138,16/11/2019,i6GjRpxxOCYe4rY76ce2JsT2xtM%3d";
 		url = url.substring(47, url.length());
 		List<String> result = Arrays.asList(url.split("\\s*,\\s*"));
 		Integer num = 0;

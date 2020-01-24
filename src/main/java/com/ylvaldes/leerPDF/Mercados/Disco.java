@@ -200,7 +200,7 @@ public class Disco implements IMercados {
 			String[] des = string.split("[0-9]{1,3}(\\,[0-9]{2})");
 			descripcion = des[1].toString().trim().substring(0, des[1].toString().length() - 4);
 			log.info("Descripcion: " + descripcion);
-			elementos.add(new Compra(Double.valueOf(cantidad), Double.valueOf(cantidad) * Double.valueOf(precioOriginal), Double.valueOf(precioDescuento),descripcion, mercado));
+			elementos.add(new Compra(Double.valueOf(cantidad),Double.valueOf(precioOriginal) + Double.valueOf(precioDescuento), Double.valueOf(precioOriginal),descripcion, mercado));
 
 		}
 		for (Compra compra : elementos) {
