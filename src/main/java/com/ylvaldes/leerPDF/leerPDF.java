@@ -55,7 +55,7 @@ public class leerPDF {
 		Scanner teclado = new Scanner(System.in);
 		log.info("URL Scaneada: ");
 		String url = teclado.nextLine();
-		//String url = "https://www.efactura.dgi.gub.uy/consultaQR/cfe?210301960011,101,A,466242,138,16/11/2019,i6GjRpxxOCYe4rY76ce2JsT2xtM%3d";
+		// String url = "https://www.efactura.dgi.gub.uy/consultaQR/cfe?210301960011,101,A,487540,452,25/01/2020,7uDkj7es7QtOs5lDAmZkY%2fkqgp4%3d";
 		url = url.substring(47, url.length());
 		List<String> result = Arrays.asList(url.split("\\s*,\\s*"));
 		Integer num = 0;
@@ -214,13 +214,41 @@ public class leerPDF {
 
 				break;
 
+			// Natal
+			// 215131830016
+			case "215131830016" :
+				mercado = "Natal";
+				log.info("Mercado: " + mercado);
+				try {
+					Date d;
+					d = format3.parse(result.get(5).replace("%2F", ""));
+					String fecha = format.format(d);
+					num = Integer.parseInt(result.get(3));
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						ScantechTest carnelandiaTest = new ScantechTest();
+						carnelandiaTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+					}
+					// Renombrar el Fichero
+					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
+					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					file.renameTo(file2);
+
+					PDF = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+
+					Scanntech carnelandia = new Scanntech();
+					carnelandia.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
+				} catch (ParseException e) {
+					log.error(e.getMessage());
+				}
+
+				break;
+
 			// Carnelandia
 			// 211229400017
 			case "211229400017" :
 				mercado = "Carnelandia";
 				log.info("Mercado: " + mercado);
 				try {
-
 					Date d;
 					d = format2.parse(result.get(5));
 					String fecha = format.format(d);
@@ -243,6 +271,66 @@ public class leerPDF {
 				}
 
 				break;
+				// SuperUSAColonia
+				// 216270160018
+				case "216270160018" :
+					mercado = "SuperUSAColonia";
+					log.info("Mercado: " + mercado);
+					try {
+						Date d;
+						d = format3.parse(result.get(5).replace("%2F", ""));
+						String fecha = format.format(d);
+						num = Integer.parseInt(result.get(3));
+						if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+							ScantechTest carnelandiaTest = new ScantechTest();
+							carnelandiaTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+						}
+						// Renombrar el Fichero
+						File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
+						File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+						file.renameTo(file2);
+
+						PDF = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+
+						Scanntech carnelandia = new Scanntech();
+						carnelandia.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
+					} catch (ParseException e) {
+						log.error(e.getMessage());
+					}
+
+					break;
+					
+					// SuperMercadoEconomico
+					// 213938880017
+					case "213938880017" :
+						mercado = "SuperMercadoEconomico";
+						log.info("Mercado: " + mercado);
+
+						try {
+							// Descarga el Fichero
+
+							Date d;
+							d = format3.parse(result.get(5).replace("%2F", ""));
+							String fecha = format.format(d);
+							num = Integer.parseInt(result.get(3));
+							if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+								ScantechTest elNaranjoTest = new ScantechTest();
+								elNaranjoTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+							}
+							// Renombrar el Fichero
+							File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
+							File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+							file.renameTo(file2);
+
+							PDF = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+
+							Scanntech elNaranjo = new Scanntech();
+							elNaranjo.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
+						} catch (ParseException e) {
+							log.error(e.getMessage());
+						}
+
+						break;
 
 			// SuperAriel
 			// 213304860012
@@ -369,9 +457,31 @@ public class leerPDF {
 			// 211223740010
 			case "211223740010" :
 				mercado = "Distravi";
-				log.info("Mercado Distravi");
-				Distravi distravi = new Distravi();
-				distravi.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
+				log.info("Mercado: " + mercado);
+				try {
+					Date d;
+					d = format3.parse(result.get(5).replace("%2F", ""));
+					String fecha = format.format(d);
+					num = Integer.parseInt(result.get(3));
+					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+						ScantechTest mercadoNaturalTest = new ScantechTest();
+						mercadoNaturalTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+					}
+
+					// Renombrar el Fichero
+					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
+					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					file.renameTo(file2);
+
+					PDF = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+
+					Scanntech ditravis = new Scanntech();
+					ditravis.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
+				} catch (ParseException e) {
+					log.error(e.getMessage());
+				} catch (Exception e) {
+					log.error(e.getMessage());
+				}
 				break;
 
 			case "AlmaNatural" :

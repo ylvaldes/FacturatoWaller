@@ -115,8 +115,7 @@ public class Disco implements IMercados {
 
 			log.info(lineasPDF.get(postFechaHora + 1).split("       ")[1]);
 			try {
-				fecha = new SimpleDateFormat(recurso.getPatternFormatH())
-						.parse(lineasPDF.get(postFechaHora + 1).split("       ")[1]);
+				fecha = new SimpleDateFormat(recurso.getPatternFormatH()).parse(lineasPDF.get(postFechaHora + 1).split("       ")[1]);
 			} catch (ParseException e) {
 				log.error(e.getMessage());
 			}
