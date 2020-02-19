@@ -106,14 +106,14 @@ public class Sluckis implements IMercados {
 
 		int posInicio = utilString.buscarString("Artículo", lineasPDF);
 		int postFin = utilString.buscarString("Adenda", lineasPDF);
-		int posTotal = utilString.buscarString("Pago total", lineasPDF);
+		int posTotal = utilString.buscarString("Fecha de Vencimiento", lineasPDF);
 		int postLey19 = utilString.buscarString("Desc. Ley   19210", lineasPDF);
-		int postFechaHora = utilString.buscarString("Cód. Cliente", lineasPDF);
+		int postFechaHora = utilString.buscarString("Fecha de emitido", lineasPDF);
 		int postCodSeg = utilString.buscarString("Código de seguridad:", lineasPDF);
 
-		codSeguridad = lineasPDF.get(postCodSeg).trim().split(":")[1].trim();
+		codSeguridad = lineasPDF.get(postCodSeg+1).trim();
 
-		log.info(lineasPDF.get(postFechaHora + 1).split("   ")[1]);
+		log.info((lineasPDF.get(postFechaHora).split("   ")[0]).split(":")[1]);
 		try {
 			if (lineasPDF.get(postFechaHora + 1).split("   ")[1] == " ") {
 				fecha = new SimpleDateFormat(recurso.getPatternFormatH()).parse(lineasPDF.get(postFechaHora + 1).split("   ")[1]);

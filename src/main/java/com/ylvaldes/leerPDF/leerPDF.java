@@ -20,13 +20,13 @@ import com.ylvaldes.leerPDF.Mercados.AlmaNatural;
 import com.ylvaldes.leerPDF.Mercados.Devoto;
 import com.ylvaldes.leerPDF.Mercados.DevotoE;
 import com.ylvaldes.leerPDF.Mercados.Disco;
-import com.ylvaldes.leerPDF.Mercados.Distravi;
 import com.ylvaldes.leerPDF.Mercados.Frog;
 import com.ylvaldes.leerPDF.Mercados.Scanntech;
 import com.ylvaldes.leerPDF.Mercados.Sluckis;
 import com.ylvaldes.leerPDF.Mercados.Tata;
 import com.ylvaldes.leerPDF.ObtenerPDF.DevotoTest;
 import com.ylvaldes.leerPDF.ObtenerPDF.DiscoTest;
+import com.ylvaldes.leerPDF.ObtenerPDF.ObtenerPDF;
 import com.ylvaldes.leerPDF.ObtenerPDF.ScantechTest;
 import com.ylvaldes.leerPDF.ObtenerPDF.SluckisTest;
 import com.ylvaldes.leerPDF.ObtenerPDF.TataTest;
@@ -71,8 +71,8 @@ public class leerPDF {
 				num = Integer.parseInt(result.get(3));
 				try {
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						TataTest frogTest = new TataTest();
-						frogTest.tata(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new TataTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
 					}
 				} catch (Exception e) {
 					log.error(e.getMessage());
@@ -90,8 +90,8 @@ public class leerPDF {
 				num = Integer.parseInt(result.get(3));
 				try {
 					if (!new File(recurso.getResourse() + "/" + result.get(0) + "-" + result.get(3) + ".pdf").exists()) {
-						SluckisTest sluckisTest = new SluckisTest();
-						sluckisTest.sluckis(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new SluckisTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
 					}
 				} catch (Exception e) {
 					log.error(e.getMessage());
@@ -108,8 +108,8 @@ public class leerPDF {
 				num = Integer.parseInt(result.get(3));
 				try {
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						TataTest tataTest = new TataTest();
-						tataTest.tata(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new TataTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
 					}
 				} catch (Exception e) {
 					log.error(e.getMessage());
@@ -127,8 +127,8 @@ public class leerPDF {
 				num = Integer.parseInt(result.get(3));
 				try {
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						DiscoTest discoTest = new DiscoTest();
-						discoTest.disco(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new DiscoTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
 					}
 				} catch (Exception e) {
 					log.error(e.getMessage());
@@ -148,8 +148,8 @@ public class leerPDF {
 				num = Integer.parseInt(result.get(3));
 				try {
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						DevotoTest devotoExpresTest = new DevotoTest();
-						devotoExpresTest.devoto(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new DevotoTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
 					}
 				} catch (Exception e) {
 					log.error(e.getMessage());
@@ -169,8 +169,8 @@ public class leerPDF {
 				num = Integer.parseInt(result.get(3));
 				try {
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						DevotoTest devotoTest = new DevotoTest();
-						devotoTest.devoto(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new DevotoTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
 					}
 				} catch (Exception e) {
 					log.error(e.getMessage());
@@ -196,8 +196,8 @@ public class leerPDF {
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ScantechTest elNaranjoTest = new ScantechTest();
-						elNaranjoTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new ScantechTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 					// Renombrar el Fichero
 					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
@@ -225,8 +225,8 @@ public class leerPDF {
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ScantechTest carnelandiaTest = new ScantechTest();
-						carnelandiaTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new ScantechTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 					// Renombrar el Fichero
 					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
@@ -254,8 +254,8 @@ public class leerPDF {
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ScantechTest carnelandiaTest = new ScantechTest();
-						carnelandiaTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new ScantechTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 					// Renombrar el Fichero
 					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
@@ -282,8 +282,8 @@ public class leerPDF {
 						String fecha = format.format(d);
 						num = Integer.parseInt(result.get(3));
 						if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-							ScantechTest carnelandiaTest = new ScantechTest();
-							carnelandiaTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+							ObtenerPDF obtenerPDF = new ScantechTest();
+							obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 						}
 						// Renombrar el Fichero
 						File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
@@ -314,8 +314,8 @@ public class leerPDF {
 							String fecha = format.format(d);
 							num = Integer.parseInt(result.get(3));
 							if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-								ScantechTest elNaranjoTest = new ScantechTest();
-								elNaranjoTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+								ObtenerPDF obtenerPDF = new ScantechTest();
+								obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 							}
 							// Renombrar el Fichero
 							File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
@@ -344,8 +344,8 @@ public class leerPDF {
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ScantechTest superArielTest = new ScantechTest();
-						superArielTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new ScantechTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 					// Renombrar el Fichero
 					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
@@ -373,8 +373,8 @@ public class leerPDF {
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ScantechTest montserratTest = new ScantechTest();
-						montserratTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new ScantechTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 					// Renombrar el Fichero
 					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
@@ -402,8 +402,8 @@ public class leerPDF {
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ScantechTest mercadoNaturalTest = new ScantechTest();
-						mercadoNaturalTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new ScantechTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 
 					// Renombrar el Fichero
@@ -433,8 +433,8 @@ public class leerPDF {
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ScantechTest mercadoNaturalTest = new ScantechTest();
-						mercadoNaturalTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new ScantechTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 
 					// Renombrar el Fichero
@@ -464,8 +464,8 @@ public class leerPDF {
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
 					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ScantechTest mercadoNaturalTest = new ScantechTest();
-						mercadoNaturalTest.scantech(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
+						ObtenerPDF obtenerPDF = new ScantechTest();
+						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 
 					// Renombrar el Fichero
