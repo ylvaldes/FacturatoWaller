@@ -46,6 +46,7 @@ public class leerPDF {
 		String directorioRaiz = System.getProperty("user.dir");
 
 		// Carga los recursos
+		// Carga los recursos
 		LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 		recurso.loadResourceConf();
 		SimpleDateFormat format = new SimpleDateFormat(recurso.getPatternFormatS());
