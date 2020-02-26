@@ -494,7 +494,8 @@ public class leerPDF {
 				mercado = "Itau";
 				Itau itau = new Itau();
 				itau.leerDatos(PDF, recurso.getOutput() + mercado + ".txt");
-				break;
+				break;    
+				
 
 			default :
 				break;
