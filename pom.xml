@@ -6,7 +6,7 @@
 	<artifactId>FacturaToWaller</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>FacturaToWaller</name>
-	<description>Herramienta para Leer los PDF de los Mercados en Uruguay y Generar un excel con los Registros</description>
+	<description>Herramienta para Leer los PDF de los Mercados en Uruguay y Generar un excel con los Registros </description>
 	<developers>
 		<developer>
 			<id>maven</id>
