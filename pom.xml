@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ylvaldes</groupId>
 	<artifactId>FacturaToWaller</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>2.0</version>
 	<name>FacturaToWaller</name>
-	<description>Herramienta para Leer los PDF de los Mercados en Uruguay y Generar un excel con los Registros</description>
+	<description>Herramienta para Leer los PDF de los Mercados en Uruguay y Generar un excel con los Registros </description>
 	<developers>
 		<developer>
-			<id>maven</id>
+			<id>ylv</id>
 			<name>Yasmani Ledesma Valdes</name>
 			<email>yasman05@gmail.com</email>
 		</developer>
