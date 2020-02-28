@@ -69,7 +69,7 @@ public class Tata implements IMercados {
 			totalSuma = 0.0;
 			ley = 0.0;
 			fecha = new Date();
-			mercado="";
+			mercado = "";
 
 			// Inicializando Objetos de Clases
 			excel = new Excel();
@@ -89,7 +89,7 @@ public class Tata implements IMercados {
 	public void leerDatos(String filename, String output) {
 		log.debug("Entrada: " + filename);
 		txt = new Txt(filename, output);
-		mercado=output.substring(11, output.length()-4);
+		mercado = output.substring(11, output.length() - 4);
 
 		lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
 
@@ -108,6 +108,9 @@ public class Tata implements IMercados {
 		int postFin = utilString.buscarString("TOTALES", lineasPDF);
 		int posTotal = utilString.buscarString("Pago total", lineasPDF);
 		int postLey19 = utilString.buscarString("Desc. Ley   19210", lineasPDF);
+		if (postLey19 < 0) {
+			postLey19 = utilString.buscarString("Desc. Ley  19210", lineasPDF);
+		}
 		int postFechaHora = utilString.buscarString("No.Ticket", lineasPDF);
 		int postCodSeg = utilString.buscarString("Cod. de Seguridad:", lineasPDF);
 
@@ -176,7 +179,7 @@ public class Tata implements IMercados {
 			if (matcherCantP.find()) {
 				// Coincidió => obtener el valor del grupo 1
 				precioOriginal = matcherCantP.group(0);
-				precioOriginal=precioOriginal.replace(".", "");
+				precioOriginal = precioOriginal.replace(".", "");
 				precioOriginal = precioOriginal.replace(",", ".");
 				log.info("Precio Original: " + precioOriginal);
 			}
@@ -186,7 +189,7 @@ public class Tata implements IMercados {
 			if (matcherCantP.find()) {
 				// Coincidió => obtener el valor del grupo 1
 				precioDescuento = matcherCantP.group(0);
-				precioDescuento=precioDescuento.replace(".", "");
+				precioDescuento = precioDescuento.replace(".", "");
 				precioDescuento = precioDescuento.replace(",", ".");
 				log.info("Precio con Descuento: " + precioDescuento);
 			}
