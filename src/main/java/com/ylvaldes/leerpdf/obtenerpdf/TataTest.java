@@ -16,10 +16,10 @@ public class TataTest extends ObtenerPDF {
 		// 4 | type | name=RUT | 210003270017 |
 		driver.findElement(By.name("RUT")).sendKeys(rut);
 		// 5 | select | name=TipoCFE | label=101 Ticket |
-		{
-			WebElement dropdown = driver.findElement(By.name("TipoCFE"));
-			dropdown.findElement(By.xpath("//option[. = '101 Ticket']")).click();
-		}
+
+		WebElement dropdown = driver.findElement(By.name("TipoCFE"));
+		dropdown.findElement(By.xpath("//option[. = '101 Ticket']")).click();
+
 		// 6 | type | name=Serie | QO |
 		driver.findElement(By.name("Serie")).sendKeys(serie);
 		// 7 | type | name=Numero | 750203 |
@@ -36,7 +36,7 @@ public class TataTest extends ObtenerPDF {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		driver.switchTo().window(vars.get("win276").toString());

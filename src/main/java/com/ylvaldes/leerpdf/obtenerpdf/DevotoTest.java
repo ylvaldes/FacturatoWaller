@@ -14,15 +14,15 @@ public class DevotoTest extends ObtenerPDF {
 		driver.get("https://www.devoto.com.uy/consulte-su-ticket");
 		// 3 | select | name=RUT | label=Devoto Express |
 		String tipo = (rut.equals("210650500016") ? "Devoto Express" : (rut.equals("210297450018") ? "Devoto" : ""));
-		{
-			WebElement dropdown = driver.findElement(By.name("RUT"));
-			dropdown.findElement(By.xpath("//option[. = '"+tipo+"']")).click();
-		}
-		// 4 | select | name=TipoCFE | label=101 Ticket |
-		{
-			WebElement dropdown = driver.findElement(By.name("TipoCFE"));
-			dropdown.findElement(By.xpath("//option[. = '101 Ticket']")).click();
-		}
+		
+		WebElement dropdown = driver.findElement(By.name("RUT"));
+		dropdown.findElement(By.xpath("//option[. = '"+tipo+"']")).click();
+		
+			// 4 | select | name=TipoCFE | label=101 Ticket |
+		
+		WebElement dropdown1 = driver.findElement(By.name("TipoCFE"));
+		dropdown1.findElement(By.xpath("//option[. = '101 Ticket']")).click();
+		
 		// 5 | type | name=Serie | J |
 		driver.findElement(By.name("Serie")).sendKeys(serie);
 		// 6 | type | name=Numero | 5800306 |
@@ -43,7 +43,7 @@ public class DevotoTest extends ObtenerPDF {
 
 	@Override
 	public void getPDF(String rut, String serie, String numero, String total, String fecha, String cdSegu) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 }

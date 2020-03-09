@@ -30,7 +30,7 @@ public class SluckisTest extends ObtenerPDF {
 
 	@Override
 	public void getPDF(String rut, String serie, String numero, String total, String fecha, String cdSegu) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 }

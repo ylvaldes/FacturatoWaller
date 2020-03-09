@@ -42,7 +42,7 @@ public class DiscoTest extends ObtenerPDF {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		driver.switchTo().window(vars.get("win6744").toString());
@@ -52,7 +52,6 @@ public class DiscoTest extends ObtenerPDF {
 
 	@Override
 	public void getPDF(String rut, String serie, String numero, String total, String fecha, String cdSegu) {
-		// TODO Auto-generated method stub
-
+	
 	}
 }

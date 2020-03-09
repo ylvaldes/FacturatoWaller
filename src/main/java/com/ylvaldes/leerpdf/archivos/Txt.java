@@ -9,8 +9,12 @@ import org.apache.pdfbox.io.RandomAccessFile;
 import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Txt {
+	private static final Logger log = LoggerFactory.getLogger(Txt.class);
+		
 	String filename;
 	String output;
 
@@ -44,8 +48,8 @@ public class Txt {
 			}
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Error al crear el txt");
+			log.error(e.getMessage());
 		}
 		return parsedText;
 	}

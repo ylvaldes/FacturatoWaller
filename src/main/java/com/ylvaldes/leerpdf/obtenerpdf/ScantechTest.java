@@ -32,7 +32,7 @@ public class ScantechTest extends ObtenerPDF {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		vars.put("window_handles", driver.getWindowHandles());
@@ -45,7 +45,6 @@ public class ScantechTest extends ObtenerPDF {
 
 	@Override
 	public void getPDF(String rut, String serie, String numero, String total, String cdSegu) {
-		// TODO Auto-generated method stub
-
+		
 	}
 }

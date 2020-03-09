@@ -1,6 +1,5 @@
 package com.ylvaldes.leerpdf.estadocuentas;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -23,7 +22,7 @@ import com.ylvaldes.leerpdf.utiles.UtilesString;
 
 public class Itau implements IEstadosCuenta {
 	private static final Logger log = LoggerFactory.getLogger(Itau.class);
-	private final static LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
+	private static final LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 	private static DecimalFormat df2 = new DecimalFormat("#.##");
 	// Objetos
 	Excel excel;
@@ -43,8 +42,8 @@ public class Itau implements IEstadosCuenta {
 	public Itau() {
 		try {
 			// Inicializando Listas
-			lineasPDF = new ArrayList<String>();
-			elementos = new ArrayList<ElementosEstadoCuenta>();
+			lineasPDF = new ArrayList<>();
+			elementos = new ArrayList<>();
 
 			// Inicializando Variables
 			nombre = "";
@@ -59,10 +58,8 @@ public class Itau implements IEstadosCuenta {
 			// Carga de Recursos
 			recurso.loadResourceConf();
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.getMessage());
 		}
 
 	}
@@ -122,7 +119,7 @@ public class Itau implements IEstadosCuenta {
 			try {
 				fechaCompra = new SimpleDateFormat("dd MM yy").parse(a[0]);
 			} catch (ParseException e) {
-				e.printStackTrace();
+				log.error(e.getMessage());
 			}
 
 			// Obtiene el precio Original del producto

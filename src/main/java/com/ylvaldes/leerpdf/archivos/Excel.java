@@ -1,6 +1,5 @@
 package com.ylvaldes.leerpdf.archivos;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -20,18 +19,17 @@ import com.ylvaldes.leerpdf.utiles.LoadResourceConfLeerPDF;
 
 public class Excel {
 	private static final Logger log = LoggerFactory.getLogger(Excel.class);
-	private final static LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
+	private static final LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 
 	public Excel() {
 		try {
 			recurso.loadResourceConf();
-		} catch (FileNotFoundException e) {
-			log.error(e.getMessage());
-		} catch (IOException e) {
+		}  catch (IOException e) {
 			log.error(e.getMessage());
 		}
 	}
 
+	@SuppressWarnings("resource")
 	public void crearExcel(List<Registro> reg, String salida, String mercado, Date fecha) {
 		SimpleDateFormat format = new SimpleDateFormat(recurso.getPatternFormatH());
 		SimpleDateFormat format2 = new SimpleDateFormat("yyyyMMdd");

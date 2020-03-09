@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.ylvaldes.leerpdf.utiles.LoadResourceConfLeerPDF;
 
 public class Registro {
-	private final static LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
+	private static final  LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 	private static final Logger log = LoggerFactory.getLogger(Registro.class);
 
 	Double importe;

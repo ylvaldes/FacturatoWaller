@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 import com.ylvaldes.leerpdf.utiles.LoadResourceConfLeerPDF;
 
 public class Compra {
-	private final static LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
+	private static final LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 	private static DecimalFormat df2 = new DecimalFormat("#.##");
 
 	double cantidad;

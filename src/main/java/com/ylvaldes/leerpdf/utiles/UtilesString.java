@@ -22,7 +22,6 @@ public class UtilesString {
 			}
 		}
 		
-		//String stABuscar = lista.stream().filter(strin -> strin.matches(m)).findAny().orElse(null);
 		
 		return lista.indexOf(stABuscar);
 	}

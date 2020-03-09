@@ -1,6 +1,5 @@
 package com.ylvaldes.leerpdf.obtenerpdf;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import com.ylvaldes.leerpdf.utiles.LoadResourceConfLeerPDF;
 
 public abstract class ObtenerPDF implements IObtenerPDF {
-	private final static Logger log = LoggerFactory.getLogger(ObtenerPDF.class);
+	private static final Logger log = LoggerFactory.getLogger(ObtenerPDF.class);
 	WebDriver driver;
 	Map<String, Object> vars;
 	JavascriptExecutor js;
@@ -30,7 +29,7 @@ public abstract class ObtenerPDF implements IObtenerPDF {
 			String rutaProyecto = System.getProperty("user.dir");
 			rutaProyecto += "\\" + recurso.getResourse();
 
-			System.setProperty("webdriver.chrome.driver", recurso.getResourse()+"\\WebDriver\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", recurso.getResourse() + "\\WebDriver\\chromedriver.exe");
 			ChromeOptions options = new ChromeOptions();
 			Map<String, Object> prefs = new HashMap<String, Object>();
 			prefs.put("download.default_directory", rutaProyecto);
@@ -41,13 +40,11 @@ public abstract class ObtenerPDF implements IObtenerPDF {
 			options.addArguments("disable-infobars");
 			options.setExperimentalOption("prefs", prefs);
 			driver = new ChromeDriver(options);
-			// driver.manage().window().maximize();
+			
 			driver.manage().window().setPosition(new Point(0, -1000));
 			js = (JavascriptExecutor) driver;
 			vars = new HashMap<String, Object>();
-		} catch (FileNotFoundException e) {
-			log.error(e.getMessage());
-		} catch (IOException e) {
+		}  catch (IOException e) {
 			log.error(e.getMessage());
 		}
 

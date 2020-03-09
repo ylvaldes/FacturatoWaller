@@ -12,14 +12,12 @@ public class McDonalsTest extends ObtenerPDF {
 		// 2 | setWindowSize | 1936x1066 | |
 		driver.manage().window().maximize();
 		// 3 | selectFrame | index=0 | |
-		//driver.switchTo().frame(0);
 		// 4 | type | name=RUT | 211319220018 |
 		driver.findElement(By.name("RUT")).sendKeys(rut);
 		// 5 | select | name=TipoCFE | label=101 e-Ticket |
-		{
-			WebElement dropdown = driver.findElement(By.name("TipoCFE"));
-			dropdown.findElement(By.xpath("//option[. = '101 e-Ticket']")).click();
-		}
+		WebElement dropdown = driver.findElement(By.name("TipoCFE"));
+		dropdown.findElement(By.xpath("//option[. = '101 e-Ticket']")).click();
+		
 		// 6 | type | name=Serie | GI |
 		driver.findElement(By.name("Serie")).sendKeys(serie);
 		// 7 | type | name=Numero | 0184564 |
@@ -36,7 +34,7 @@ public class McDonalsTest extends ObtenerPDF {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		driver.switchTo().window(vars.get("win276").toString());

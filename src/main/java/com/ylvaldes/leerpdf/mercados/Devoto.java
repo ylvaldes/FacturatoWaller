@@ -24,7 +24,7 @@ import com.ylvaldes.leerpdf.utiles.UtilesString;
 
 public class Devoto implements IMercados {
 	private static final Logger log = LoggerFactory.getLogger(Devoto.class);
-	private final static LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
+	private static final LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 	private static DecimalFormat df2 = new DecimalFormat("#.##");
 	// Objetos
 	Excel excel;
@@ -53,9 +53,9 @@ public class Devoto implements IMercados {
 	public Devoto() {
 		try {
 			// Inicializando Listas
-			lineasPDF = new ArrayList<String>();
-			elementos = new ArrayList<Compra>();
-			registros = new ArrayList<Registro>();
+			lineasPDF = new ArrayList<>();
+			elementos = new ArrayList<>();
+			registros = new ArrayList<>();
 
 			// Inicializando Variables
 			moneda = "";
@@ -90,8 +90,8 @@ public class Devoto implements IMercados {
 		try {
 			log.debug("Entrada: " + filename);
 			txt = new Txt(filename, output);
-			mercado=output.substring(11, output.length()-4);
-			
+			mercado = output.substring(11, output.length() - 4);
+
 			lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
 			lineasPDF = lineasPDF.subList(1, lineasPDF.size());
 			rut = lineasPDF.get(3);
@@ -115,15 +115,13 @@ public class Devoto implements IMercados {
 
 			log.info(lineasPDF.get(postFechaHora + 1).split("       ")[1]);
 			try {
-				fecha = new SimpleDateFormat(recurso.getPatternFormatH())
-						.parse(lineasPDF.get(postFechaHora + 1).split("       ")[1]);
+				fecha = new SimpleDateFormat(recurso.getPatternFormatH()).parse(lineasPDF.get(postFechaHora + 1).split("       ")[1]);
 			} catch (ParseException e) {
 				log.error(e.getMessage());
 			}
 
 			log.info("TOTAL A PAGAR: " + lineasPDF.get(posTotal).substring(13).trim());
-			totalPagarPDF = Double.valueOf(lineasPDF.get(posTotal).substring(13).trim()
-					.substring(1, lineasPDF.get(posTotal).substring(13).trim().length()).trim());
+			totalPagarPDF = Double.valueOf(lineasPDF.get(posTotal).substring(13).trim().substring(1, lineasPDF.get(posTotal).substring(13).trim().length()).trim());
 
 			datosExtra = utilString.datosExtra(rut, eTicket, serie, codSeguridad, totalPagarPDF);
 
@@ -132,17 +130,13 @@ public class Devoto implements IMercados {
 			if (postLey19 > 0) {
 				log.info("Desc. Ley 19210: " + lineasPDF.get(postLey19).substring(29).trim());
 				int posSPeso = lineasPDF.get(postLey19).indexOf("$");
-				ley = (Double.valueOf(
-						lineasPDF.get(postLey19).substring(posSPeso + 1, lineasPDF.get(postLey19).length()).trim())
-						* -1);
+				ley = (Double.valueOf(lineasPDF.get(postLey19).substring(posSPeso + 1, lineasPDF.get(postLey19).length()).trim()) * -1);
 			}
 
 			if (totalPagarPDF == totalSuma) {
 				log.info("Información de la Compra es Correcta");
 				if (ley > 0) {
-					registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha,
-							mercado + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani",
-							direccion));
+					registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha, mercado + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani", direccion));
 				}
 				excel.crearExcel(registros, recurso.getOutput(), mercado, fecha);
 			}
@@ -198,14 +192,11 @@ public class Devoto implements IMercados {
 			String[] des = string.split("[0-9]{1,3}(\\,[0-9]{2})");
 			descripcion = des[1].toString().trim().substring(0, des[1].toString().length() - 4);
 			log.info("Descripcion: " + descripcion);
-			elementos.add(new Compra(Double.valueOf(cantidad),
-					Double.valueOf(precioOriginal) + Double.valueOf(precioDescuento), Double.valueOf(precioOriginal),
-					descripcion,mercado));
+			elementos.add(new Compra(Double.valueOf(cantidad), Double.valueOf(precioOriginal) + Double.valueOf(precioDescuento), Double.valueOf(precioOriginal), descripcion, mercado));
 
 		}
 		for (Compra compra : elementos) {
-			Registro registro = new Registro((compra.getPrecioCDescuento() * -1), moneda, "Aceite", fecha,
-					compra.toString() + " " + datosExtra, "Yasmani", direccion);
+			Registro registro = new Registro((compra.getPrecioCDescuento() * -1), moneda, "Aceite", fecha, compra.toString() + " " + datosExtra, "Yasmani", direccion);
 			totalSuma += compra.getPrecioCDescuento();
 			log.info(registro.toString());
 			registros.add(registro);
