@@ -40,8 +40,7 @@ public class LeerPDF {
 	private static final Logger log = LoggerFactory.getLogger(LeerPDF.class);
 	static final String MSG_MERCADO = "Mercado: {}";
 	static final String MSG_RENOMBRAR_ARCH = "Renombrando fichero {} por {}";
-
-	
+	static final String FILE_SEPARATOR = System.getProperty("file.separator");
 
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParserConfigurationException {
 		// Obtiene las configuraciones Basicas de LoggerFactory
@@ -76,7 +75,7 @@ public class LeerPDF {
 				log.info(MSG_MERCADO, mercado);
 				num = Integer.parseInt(result.get(3));
 				try {
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new McDonalsTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
 					}
@@ -95,7 +94,7 @@ public class LeerPDF {
 				log.info(MSG_MERCADO, mercado);
 				num = Integer.parseInt(result.get(3));
 				try {
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new TataTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
 					}
@@ -114,7 +113,7 @@ public class LeerPDF {
 				log.info(MSG_MERCADO, mercado);
 				num = Integer.parseInt(result.get(3));
 				try {
-					if (!new File(recurso.getResourse() + "/" + result.get(0) + "-" + result.get(3) + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(0) + "-" + result.get(3) + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new SluckisTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
 					}
@@ -132,7 +131,7 @@ public class LeerPDF {
 				log.info(MSG_MERCADO, mercado);
 				num = Integer.parseInt(result.get(3));
 				try {
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new TataTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
 					}
@@ -151,7 +150,7 @@ public class LeerPDF {
 				log.info(MSG_MERCADO, mercado);
 				num = Integer.parseInt(result.get(3));
 				try {
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new DiscoTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
 					}
@@ -172,7 +171,7 @@ public class LeerPDF {
 				log.info(MSG_MERCADO, mercado);
 				num = Integer.parseInt(result.get(3));
 				try {
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new DevotoTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
 					}
@@ -193,7 +192,7 @@ public class LeerPDF {
 				log.info(MSG_MERCADO, mercado);
 				num = Integer.parseInt(result.get(3));
 				try {
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new DevotoTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
 					}
@@ -220,13 +219,13 @@ public class LeerPDF {
 					d = format2.parse(result.get(5));
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new ScantechTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 					// Renombrar el Fichero
-					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
-					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
 					if (file.renameTo(file2)) {
 						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 					}
@@ -251,13 +250,13 @@ public class LeerPDF {
 					d = format3.parse(result.get(5).replace("%2F", ""));
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new ScantechTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 					// Renombrar el Fichero
-					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
-					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
 					if (file.renameTo(file2)) {
 						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 					}
@@ -282,13 +281,13 @@ public class LeerPDF {
 					d = format2.parse(result.get(5));
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new ScantechTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 					// Renombrar el Fichero
-					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
-					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
 					if (file.renameTo(file2)) {
 						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 					}
@@ -313,13 +312,13 @@ public class LeerPDF {
 					d = format3.parse(result.get(5).replace("%2F", ""));
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new ScantechTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 					// Renombrar el Fichero
-					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
-					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
 					if (file.renameTo(file2)) {
 						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 					}
@@ -347,13 +346,13 @@ public class LeerPDF {
 					d = format3.parse(result.get(5).replace("%2F", ""));
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new ScantechTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 					// Renombrar el Fichero
-					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
-					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
 					if (file.renameTo(file2)) {
 						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 					}
@@ -379,13 +378,13 @@ public class LeerPDF {
 					d = format3.parse(result.get(5).replace("%2F", ""));
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new ScantechTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 					// Renombrar el Fichero
-					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
-					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
 					if (file.renameTo(file2)) {
 						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 					}
@@ -410,13 +409,13 @@ public class LeerPDF {
 					d = format2.parse(result.get(5));
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new ScantechTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 					// Renombrar el Fichero
-					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
-					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
 					if (file.renameTo(file2)) {
 						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 					}
@@ -441,14 +440,14 @@ public class LeerPDF {
 					d = format3.parse(result.get(5).replace("%2F", ""));
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new ScantechTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 
 					// Renombrar el Fichero
-					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
-					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
 					if (file.renameTo(file2)) {
 						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 					}
@@ -457,8 +456,6 @@ public class LeerPDF {
 
 					Scanntech mercadoNatural = new Scanntech();
 					mercadoNatural.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				} catch (ParseException e) {
-					log.error(e.getMessage());
 				} catch (Exception e) {
 					log.error(e.getMessage());
 				}
@@ -474,14 +471,14 @@ public class LeerPDF {
 					d = format2.parse(result.get(5));
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new ScantechTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 
 					// Renombrar el Fichero
-					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
-					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
 					if (file.renameTo(file2)) {
 						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 					}
@@ -490,8 +487,6 @@ public class LeerPDF {
 
 					Scanntech donPaulino = new Scanntech();
 					donPaulino.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				} catch (ParseException e) {
-					log.error(e.getMessage());
 				} catch (Exception e) {
 					log.error(e.getMessage());
 				}
@@ -507,14 +502,14 @@ public class LeerPDF {
 					d = format3.parse(result.get(5).replace("%2F", ""));
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + "/" + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
+					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
 						ObtenerPDF obtenerPDF = new ScantechTest();
 						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
 					}
 
 					// Renombrar el Fichero
-					File file = new File(directorioRaiz + "/" + recurso.getResourse() + "/cfe.pdf");
-					File file2 = new File(directorioRaiz + "/" + recurso.getResourse() + "/" + result.get(1) + result.get(2) + result.get(3) + ".pdf");
+					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
 					if (file.renameTo(file2)) {
 						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 					}
