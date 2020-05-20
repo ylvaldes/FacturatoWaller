@@ -115,6 +115,11 @@ public class Tata implements IMercados {
 		int postCodSeg = utilString.buscarString("Cod. de Seguridad:", lineasPDF);
 
 		codSeguridad = lineasPDF.get(postCodSeg).trim().split(":")[1].trim();
+		
+		if(lineasPDF.get(postFechaHora+2).contains("Hoja"))
+		{
+			postFechaHora=postFechaHora+20;
+		}
 
 		log.info(lineasPDF.get(postFechaHora + 1).split("   ")[1]);
 		try {
