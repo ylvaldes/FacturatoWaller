@@ -345,7 +345,7 @@ public class LeerPDF {
 				log.info(MSG_MERCADO, mercado);
 				try {
 					Date d;
-					d = format2.parse(result.get(5));
+					d = format3.parse(result.get(5).replace("%2F", ""));
 					String fecha = format.format(d);
 					num = Integer.parseInt(result.get(3));
 					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
