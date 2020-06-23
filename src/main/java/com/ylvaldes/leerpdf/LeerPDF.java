@@ -308,8 +308,8 @@ public class LeerPDF {
 						break;
 
 			// Natal
-			// 215131830016
-			case "215131830016" :
+			// 217154870010
+			case "217154870010" :
 				mercado = "Natal";
 				log.info(MSG_MERCADO, mercado);
 				try {
