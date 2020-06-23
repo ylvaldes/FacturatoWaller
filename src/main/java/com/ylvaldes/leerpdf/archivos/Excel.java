@@ -32,7 +32,7 @@ public class Excel {
 	@SuppressWarnings("resource")
 	public void crearExcel(List<Registro> reg, String salida, String mercado, Date fecha) {
 		SimpleDateFormat format = new SimpleDateFormat(recurso.getPatternFormatH());
-		SimpleDateFormat format2 = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat format2 = new SimpleDateFormat("yyyyMMddHHmmss");
 		Workbook libro = new HSSFWorkbook();
 		Sheet hoja = libro.createSheet();
 		int rowIndex = 0;

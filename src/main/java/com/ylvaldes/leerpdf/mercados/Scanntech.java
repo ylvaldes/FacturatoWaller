@@ -90,7 +90,7 @@ public class Scanntech implements IMercados {
 		try {
 			log.debug("Entrada: " + filename);
 			txt = new Txt(filename, output);
-			mercado=output.substring(11, output.length()-4);
+			mercado = output.substring(11, output.length() - 4);
 
 			lineasPDF = Arrays.asList(txt.crearTxt().split("\r\n"));
 			rut = lineasPDF.get(1).split(":")[1].trim();
@@ -107,7 +107,10 @@ public class Scanntech implements IMercados {
 
 			log.debug("Direccion: " + lineasPDF.get(2));
 			direccion = lineasPDF.get(2);
-			String idLey19 = (rut.equals("211229400017")||rut.equals("215058860011")||rut.equals("211412910010")||rut.equals("215131830016")||rut.equals("213938880017")||rut.equals("216270160018"))?"VALE":(rut.equals("214634020016")?"Ley 1920":"LOLO");
+			String idLey19 = (rut.equals("211229400017") || rut.equals("215058860011") || rut.equals("211412910010")
+					|| rut.equals("215131830016") || rut.equals("213938880017") || rut.equals("216270160018")
+					|| rut.equals("200013970014") || rut.equals("212125040012")) ? "VALE"
+							: (rut.equals("214634020016") ? "Ley 1920" : "LOLO");
 			int posInicio = utilString.buscarString("Cajero:", lineasPDF);
 			int postFin = utilString.buscarString("TOTAL:", lineasPDF);
 			int posTotal = utilString.buscarString("TOTAL:", lineasPDF);
@@ -132,12 +135,14 @@ public class Scanntech implements IMercados {
 			if (totalPagarPDF == totalSuma) {
 				log.info("Información de la Compra es Correcta");
 				if (ley > 0) {
-					registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha, mercado + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani", direccion));
+					registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha,
+							mercado + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani", direccion));
 				}
 				excel.crearExcel(registros, recurso.getOutput(), mercado, fecha);
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage());
+			e.getStackTrace();
 		}
 
 	}
@@ -148,9 +153,12 @@ public class Scanntech implements IMercados {
 		for (int i = 0; i < compras.size(); i += paso) {
 			String cantidad = "";
 			String precioOriginal = "";
-			String precioDescuento = "";
+			String pXUnidad = "";
 			String descripcion = "";
 			String string1 = "";
+			Double precioXUnidad = 0.0;
+			Double precioTotalproducto = 0.0;
+			Double cantProducto = 0.0;
 			String string = compras.get(i);
 			if (i + 1 < compras.size()) {
 				string1 = compras.get(i + 1);
@@ -169,6 +177,8 @@ public class Scanntech implements IMercados {
 				paso = 2;
 				// Se obtiene la Cantidad de elementos comprados
 				cantidad = string1.substring(1).split("X")[0].trim();
+				pXUnidad = string1.substring(1).split("X")[1].trim().substring(0,
+						string1.substring(1).split("X")[1].trim().length() - 1);
 				cantidad = cantidad.replace(",", ".");
 
 			} else {
@@ -176,27 +186,31 @@ public class Scanntech implements IMercados {
 				cantidad = "1";
 			}
 
+			cantProducto = Double.valueOf(cantidad);
 			// Descripcion del Producto
 			descripcion = string.substring(0, string.length() - a[a.length - 1].length());
 			log.info("Descripcion: " + descripcion);
 
 			// Obtiene el precio Original del producto
 			precioOriginal = a[a.length - 1];
-			precioOriginal = precioOriginal.replace(",", ".");
-			log.info("Precio Original: " + precioOriginal);
-
-			// Obtiene el precio con descuento del producto
-			precioDescuento = a[a.length - 1];
-			precioDescuento = precioDescuento.replace(",", ".");
-			log.info("Precio con Descuento: " + precioDescuento);
-
+			precioOriginal = precioOriginal.replace(",", "");
+			if (cantidad.equals("1")) {
+				pXUnidad = precioOriginal;
+			}
+			precioXUnidad = Double.valueOf(pXUnidad);
 			log.info("Cantidad de Producto: " + cantidad);
+			log.info("Precio por Unidad: " + pXUnidad);
 
-			elementos.add(new Compra(Double.valueOf(cantidad), Double.valueOf(cantidad) * Double.valueOf(precioOriginal), Double.valueOf(precioDescuento), descripcion, mercado));
+			precioTotalproducto = precioXUnidad * cantProducto;
+			log.info("Precio total del Producto: " + String.valueOf(precioTotalproducto));
+
+			elementos.add(new Compra(cantProducto, precioTotalproducto, Double.valueOf(precioOriginal), descripcion,
+					mercado));
 
 		}
 		for (Compra compra : elementos) {
-			Registro registro = new Registro((compra.getPrecioCDescuento() * -1), moneda, "Aceite", fecha, compra.toString() + " " + datosExtra, "Yasmani", direccion);
+			Registro registro = new Registro((compra.getPrecioCDescuento() * -1), moneda, "Aceite", fecha,
+					compra.toString() + " " + datosExtra, "Yasmani", direccion);
 			totalSuma += compra.getPrecioCDescuento();
 			log.info(registro.toString());
 			registros.add(registro);

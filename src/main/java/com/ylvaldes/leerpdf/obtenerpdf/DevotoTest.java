@@ -12,6 +12,9 @@ public class DevotoTest extends ObtenerPDF {
 		// Step # | name | target | value | comment
 		// 1 | open | https://www.devoto.com.uy/consulte-su-ticket | |
 		driver.get("https://www.devoto.com.uy/consulte-su-ticket");
+		
+		driver.findElement(By.id("btnConfirmaSucursal")).click();
+		
 		// 3 | select | name=RUT | label=Devoto Express |
 		String tipo = (rut.equals("210650500016") ? "Devoto Express" : (rut.equals("210297450018") ? "Devoto" : ""));
 		
