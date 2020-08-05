@@ -107,7 +107,8 @@ public class Scanntech implements IMercados {
 
 			log.debug("Direccion: " + lineasPDF.get(2));
 			direccion = lineasPDF.get(2);
-			String idLey19 = (rut.equals("211229400017") || rut.equals("215058860011") || rut.equals("211412910010")
+			
+			String idLey19 = (rut.equals("215913850013") ||rut.equals("215528930010") ||rut.equals("211229400017") || rut.equals("215058860011") || rut.equals("211412910010")
 					|| rut.equals("215131830016") || rut.equals("213938880017") || rut.equals("216270160018")
 					|| rut.equals("200013970014") || rut.equals("212125040012")) ? "VALE"
 							: (rut.equals("214634020016") ? "Ley 1920" : "LOLO");
