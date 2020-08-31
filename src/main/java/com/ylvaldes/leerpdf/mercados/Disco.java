@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ylvaldes.leerpdf.archivos.Excel;
 import com.ylvaldes.leerpdf.archivos.Txt;
@@ -23,7 +23,7 @@ import com.ylvaldes.leerpdf.utiles.LoadResourceConfLeerPDF;
 import com.ylvaldes.leerpdf.utiles.UtilesString;
 
 public class Disco implements IMercados {
-	private static final Logger log = LoggerFactory.getLogger(Disco.class);
+	private static final Logger log =  LogManager.getLogger(Disco.class);
 	private final static LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 	private static DecimalFormat df2 = new DecimalFormat("#.##");
 	// Objetos
@@ -108,20 +108,24 @@ public class Disco implements IMercados {
 			int postFin = utilString.buscarString("TOTALES", lineasPDF);
 			int posTotal = utilString.buscarString("Pago total", lineasPDF);
 			int postLey19 = utilString.buscarString("Desc. Ley   19210", lineasPDF);
-			//int postFechaHora = utilString.buscarFechaHora(lineasPDF);
-			int postFechaHora = utilString.buscarString("No.Ticket", lineasPDF);
+			int postFechaHora = utilString.buscarFechaHora(lineasPDF);
+			//int postFechaHora = utilString.buscarString("No.Ticket", lineasPDF);
 			int postCodSeg = utilString.buscarString("Cod. de Seguridad:", lineasPDF);
 
 			codSeguridad = lineasPDF.get(postCodSeg).trim().split(":")[1];
 
-			log.info(lineasPDF.get(postFechaHora + 1).split("       ")[1]);
+			//log.info(lineasPDF.get(postFechaHora + 1).split("       ")[1]);
+			log.info(lineasPDF.get(postFechaHora).trim());
+			String fHora=lineasPDF.get(postFechaHora).trim();
 			try {
-				if (lineasPDF.get(postFechaHora + 1).split("       ")[1] != " ") {
-					fecha = new SimpleDateFormat(recurso.getPatternFormatH()).parse(lineasPDF.get(postFechaHora + 1).split("       ")[1]);
-				} else {
-					fecha = new SimpleDateFormat(recurso.getPatternFormatH()).parse(lineasPDF.get(postFechaHora + 1).split("       ")[2]);
+ 				if (fHora!= " ") {
+					fecha = new SimpleDateFormat(recurso.getPatternFormatH()).parse(fHora);
+				} 
+				else {
+					fecha = new SimpleDateFormat(recurso.getPatternFormatS()).parse(lineasPDF.get(5));
 				}
 			} catch (ParseException e) {
+				
 				log.error(e.getMessage());
 			}
 
