@@ -12,9 +12,8 @@ import java.util.Scanner;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.log4j.BasicConfigurator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ylvaldes.leerpdf.estadocuentas.Itau;
 import com.ylvaldes.leerpdf.mercados.AlmaNatural;
@@ -37,14 +36,14 @@ import com.ylvaldes.leerpdf.utiles.LoadResourceConfLeerPDF;
 
 public class LeerPDF {
 
-	private static final Logger log = LoggerFactory.getLogger(LeerPDF.class);
+	private static final Logger log =  LogManager.getLogger(LeerPDF.class);
 	static final String MSG_MERCADO = "Mercado: {}";
 	static final String MSG_RENOMBRAR_ARCH = "Renombrando fichero {} por {}";
 	static final String FILE_SEPARATOR = System.getProperty("file.separator");
 
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParserConfigurationException {
 		// Obtiene las configuraciones Basicas de LoggerFactory
-		BasicConfigurator.configure();
+		
 
 		String directorioRaiz = System.getProperty("user.dir");
 

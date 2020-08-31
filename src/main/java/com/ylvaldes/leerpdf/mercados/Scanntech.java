@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ylvaldes.leerpdf.archivos.Excel;
 import com.ylvaldes.leerpdf.archivos.Txt;
@@ -23,7 +23,7 @@ import com.ylvaldes.leerpdf.utiles.LoadResourceConfLeerPDF;
 import com.ylvaldes.leerpdf.utiles.UtilesString;
 
 public class Scanntech implements IMercados {
-	private static final Logger log = LoggerFactory.getLogger(Scanntech.class);
+	private static final Logger log =  LogManager.getLogger(Scanntech.class);
 	private final static LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 	private static DecimalFormat df2 = new DecimalFormat("#.##");
 	// Objetos
@@ -134,7 +134,7 @@ public class Scanntech implements IMercados {
 			}
 
 			if (totalPagarPDF == totalSuma) {
-				log.info("Información de la Compra es Correcta");
+				log.error("Información de la Compra es Correcta");
 				if (ley > 0) {
 					registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha,
 							mercado + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani", direccion));

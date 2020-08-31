@@ -6,19 +6,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.ylvaldes.leerpdf.dao.Registro;
 import com.ylvaldes.leerpdf.utiles.LoadResourceConfLeerPDF;
 
 public class Excel {
-	private static final Logger log = LoggerFactory.getLogger(Excel.class);
+	private static final Logger log =  LogManager.getLogger(Excel.class);
 	private static final LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 
 	public Excel() {
