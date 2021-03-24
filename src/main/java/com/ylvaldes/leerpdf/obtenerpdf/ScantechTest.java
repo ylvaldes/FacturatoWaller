@@ -8,7 +8,7 @@ public class ScantechTest extends ObtenerPDF {
 		// Test name: Scantech
 		// Step # | name | target | value | comment
 		// 1 | open | http://efactura1.scanntech.com/products.eticket.consultaQR/ | |
-		driver.get("http://efactura1.scanntech.com/products.eticket.consultaQR/");
+		driver.get("http://efactura.scanntech.com/products.eticket.consultaQR/");
 		// 2 | type | id=rut | 211229400017 |
 		driver.findElement(By.id("rut")).sendKeys(rut);
 		// 3 | select | id=tipoCfe | label=e-Ticket |

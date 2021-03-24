@@ -12,9 +12,8 @@ import java.util.Scanner;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.log4j.BasicConfigurator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ylvaldes.leerpdf.estadocuentas.Itau;
 import com.ylvaldes.leerpdf.mercados.AlmaNatural;
@@ -37,14 +36,13 @@ import com.ylvaldes.leerpdf.utiles.LoadResourceConfLeerPDF;
 
 public class LeerPDF {
 
-	private static final Logger log = LoggerFactory.getLogger(LeerPDF.class);
+	private static final Logger log = LogManager.getLogger(LeerPDF.class);
 	static final String MSG_MERCADO = "Mercado: {}";
 	static final String MSG_RENOMBRAR_ARCH = "Renombrando fichero {} por {}";
 	static final String FILE_SEPARATOR = System.getProperty("file.separator");
 
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParserConfigurationException {
 		// Obtiene las configuraciones Basicas de LoggerFactory
-		BasicConfigurator.configure();
 
 		String directorioRaiz = System.getProperty("user.dir");
 
@@ -68,544 +66,677 @@ public class LeerPDF {
 
 		switch (result.get(0)) {
 
-			// McDonals
-			// 211319220018
-			case "211319220018" :
-				mercado = "McDonals";
-				log.info(MSG_MERCADO, mercado);
-				num = Integer.parseInt(result.get(3));
-				try {
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new McDonalsTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
-					}
-				} catch (Exception e) {
-					log.error(e.getMessage());
+		// McDonals
+		// 211319220018
+		case "211319220018":
+			mercado = "McDonals";
+			log.info(MSG_MERCADO, mercado);
+			num = Integer.parseInt(result.get(3));
+			try {
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new McDonalsTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4),
+							result.get(6).substring(0, 6));
 				}
-				pdf = recurso.getResourse() + result.get(1) + result.get(2) + num.toString() + ".pdf";
-				McDonals mcDonals = new McDonals();
-				mcDonals.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				break;
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+			pdf = recurso.getResourse() + result.get(1) + result.get(2) + num.toString() + ".pdf";
+			McDonals mcDonals = new McDonals();
+			mcDonals.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			break;
 
-			// Frog
-			// 214214350013
-			case "214214350013" :
-				mercado = "Frog";
-				log.info(MSG_MERCADO, mercado);
-				num = Integer.parseInt(result.get(3));
-				try {
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new TataTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
-					}
-				} catch (Exception e) {
-					log.error(e.getMessage());
+		// Frog
+		// 214214350013
+		case "214214350013":
+			mercado = "Frog";
+			log.info(MSG_MERCADO, mercado);
+			num = Integer.parseInt(result.get(3));
+			try {
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new TataTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4),
+							result.get(6).substring(0, 6));
 				}
-				pdf = recurso.getResourse() + result.get(1) + result.get(2) + num.toString() + ".pdf";
-				Frog frog = new Frog();
-				frog.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				break;
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+			pdf = recurso.getResourse() + result.get(1) + result.get(2) + num.toString() + ".pdf";
+			Frog frog = new Frog();
+			frog.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			break;
 
-			// Sluckis
-			// 210301960011
-			case "210301960011" :
-				mercado = "Sluckis";
-				log.info(MSG_MERCADO, mercado);
-				num = Integer.parseInt(result.get(3));
-				try {
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(0) + "-" + result.get(3) + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new SluckisTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
-					}
-				} catch (Exception e) {
-					log.error(e.getMessage());
+		// Sluckis
+		// 210301960011
+		case "210301960011":
+			mercado = "Sluckis";
+			log.info(MSG_MERCADO, mercado);
+			num = Integer.parseInt(result.get(3));
+			try {
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(0) + "-" + result.get(3) + ".pdf")
+						.exists()) {
+					ObtenerPDF obtenerPDF = new SluckisTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4),
+							result.get(6).substring(0, 6));
 				}
-				pdf = recurso.getResourse() + result.get(0) + "-" + result.get(3) + ".pdf";
-				Sluckis sluckis = new Sluckis();
-				sluckis.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				break;
-			// TATA
-			// 210003270017
-			case "210003270017" :
-				mercado = "Tata";
-				log.info(MSG_MERCADO, mercado);
-				num = Integer.parseInt(result.get(3));
-				try {
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new TataTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4), result.get(6).substring(0, 6));
-					}
-				} catch (Exception e) {
-					log.error(e.getMessage());
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+			pdf = recurso.getResourse() + result.get(0) + "-" + result.get(3) + ".pdf";
+			Sluckis sluckis = new Sluckis();
+			sluckis.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			break;
+		// TATA
+		// 210003270017
+		case "210003270017":
+			mercado = "Tata";
+			log.info(MSG_MERCADO, mercado);
+			num = Integer.parseInt(result.get(3));
+			try {
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new TataTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), num.toString(), result.get(4),
+							result.get(6).substring(0, 6));
 				}
 				pdf = recurso.getResourse() + result.get(1) + result.get(2) + num.toString() + ".pdf";
 				Tata tata = new Tata();
 				tata.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				break;
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
 
-			// Disco
-			// 210274130017
-			case "210274130017" :
-				mercado = "Disco";
-				log.info(MSG_MERCADO, mercado);
+			break;
+
+		// Disco
+		// 210274130017
+		case "210274130017":
+			mercado = "Disco";
+			log.info(MSG_MERCADO, mercado);
+			num = Integer.parseInt(result.get(3));
+			try {
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new DiscoTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4),
+							result.get(6).substring(0, 6));
+				}
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+
+			pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+
+			Disco disco = new Disco();
+			disco.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			break;
+
+		// Devoto Express
+		// 210650500016
+		case "210650500016":
+			mercado = "DevotoE";
+			log.info(MSG_MERCADO, mercado);
+			num = Integer.parseInt(result.get(3));
+			try {
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new DevotoTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4),
+							result.get(6).substring(0, 6));
+				}
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+
+			pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+
+			DevotoE devotoExpres = new DevotoE();
+			devotoExpres.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			break;
+
+		// Devoto
+		// 210297450018
+		case "210297450018":
+			mercado = "Devoto";
+			log.info(MSG_MERCADO, mercado);
+			num = Integer.parseInt(result.get(3));
+			try {
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new DevotoTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4),
+							result.get(6).substring(0, 6));
+				}
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+
+			pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+
+			Devoto devoto = new Devoto();
+			devoto.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			break;
+
+		// ElNaranjo
+		// 214634020016
+		case "214634020016":
+			mercado = "ElNaranjo";
+			log.info(MSG_MERCADO, mercado);
+
+			try {
+				// Descarga el Fichero
+
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
+
 				num = Integer.parseInt(result.get(3));
-				try {
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new DiscoTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
-					}
-				} catch (Exception e) {
-					log.error(e.getMessage());
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
+				}
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 				}
 
 				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-				Disco disco = new Disco();
-				disco.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				break;
+				Scanntech elNaranjo = new Scanntech();
+				elNaranjo.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (ParseException e) {
+				log.error(e.getMessage());
+			}
 
-			// Devoto Express
-			// 210650500016
-			case "210650500016" :
-				mercado = "DevotoE";
-				log.info(MSG_MERCADO, mercado);
+			break;
+
+		// Supermercado de la Villa
+		// 200013970014
+		case "200013970014":
+			mercado = "SupermercadoDeLaVilla";
+			log.info(MSG_MERCADO, mercado);
+
+			try {
+				// Descarga el Fichero
+
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
 				num = Integer.parseInt(result.get(3));
-				try {
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new DevotoTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
-					}
-				} catch (Exception e) {
-					log.error(e.getMessage());
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
+				}
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 				}
 
 				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-				DevotoE devotoExpres = new DevotoE();
-				devotoExpres.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				break;
+				Scanntech elNaranjo = new Scanntech();
+				elNaranjo.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (ParseException e) {
+				log.error(e.getMessage());
+			}
 
-			// Devoto
-			// 210297450018
-			case "210297450018" :
-				mercado = "Devoto";
-				log.info(MSG_MERCADO, mercado);
+			break;
+		// Bianco Perez
+		// 212125040012
+		case "212125040012":
+			mercado = "BiancoPerez";
+			log.info(MSG_MERCADO, mercado);
+
+			try {
+				// Descarga el Fichero
+
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
 				num = Integer.parseInt(result.get(3));
-				try {
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new DevotoTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), result.get(6).substring(0, 6));
-					}
-				} catch (Exception e) {
-					log.error(e.getMessage());
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).replace("%2B", "+").substring(0, 6));
+				}
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 				}
 
 				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-				Devoto devoto = new Devoto();
-				devoto.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				break;
+				Scanntech elNaranjo = new Scanntech();
+				elNaranjo.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (ParseException e) {
+				log.error(e.getMessage());
+			}
 
-			// ElNaranjo
-			// 214634020016
-			case "214634020016" :
-				mercado = "ElNaranjo";
-				log.info(MSG_MERCADO, mercado);
+			break;
 
-				try {
-					// Descarga el Fichero
-
-					Date d;
-					d = format2.parse(result.get(5));
-					String fecha = format.format(d);
-					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new ScantechTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-					}
-					// Renombrar el Fichero
-					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
-					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
-					if (file.renameTo(file2)) {
-						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
-					}
-
-					pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
-
-					Scanntech elNaranjo = new Scanntech();
-					elNaranjo.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				} catch (ParseException e) {
-					log.error(e.getMessage());
+		// Natal 10
+		// 217154870010
+		case "215528930010":
+			mercado = "Natal";
+			log.info(MSG_MERCADO, mercado);
+			try {
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
+				num = Integer.parseInt(result.get(3));
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
+				}
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 				}
 
-				break;
-				
-				// Supermercado de la Villa
-				// 200013970014
-				case "200013970014" :
-					mercado = "SupermercadoDeLaVilla";
-					log.info(MSG_MERCADO, mercado);
+				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-					try {
-						// Descarga el Fichero
+				Scanntech carnelandia = new Scanntech();
+				carnelandia.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (ParseException e) {
+				log.error(e.getMessage());
+			}
 
-						Date d;
-						d = format3.parse(result.get(5).replace("%2F", ""));
-						String fecha = format.format(d);
-						num = Integer.parseInt(result.get(3));
-						if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-							ObtenerPDF obtenerPDF = new ScantechTest();
-							obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-						}
-						// Renombrar el Fichero
-						File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
-						File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
-						if (file.renameTo(file2)) {
-							log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
-						}
+			break;
 
-						pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
-
-						Scanntech elNaranjo = new Scanntech();
-						elNaranjo.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-					} catch (ParseException e) {
-						log.error(e.getMessage());
-					}
-
-					break;
-					// Bianco Perez
-					// 212125040012
-					case "212125040012" :
-						mercado = "BiancoPerez";
-						log.info(MSG_MERCADO, mercado);
-
-						try {
-							// Descarga el Fichero
-
-							Date d;
-							d = format3.parse(result.get(5).replace("%2F", ""));
-							String fecha = format.format(d);
-							num = Integer.parseInt(result.get(3));
-							if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-								ObtenerPDF obtenerPDF = new ScantechTest();
-								obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).replace("%2B", "+").substring(0, 6));
-							}
-							// Renombrar el Fichero
-							File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
-							File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
-							if (file.renameTo(file2)) {
-								log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
-							}
-
-							pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
-
-							Scanntech elNaranjo = new Scanntech();
-							elNaranjo.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-						} catch (ParseException e) {
-							log.error(e.getMessage());
-						}
-
-						break;
-
-			// Natal
-			// 217154870010
-			case "217154870010" :
-				mercado = "Natal";
-				log.info(MSG_MERCADO, mercado);
-				try {
-					Date d;
-					d = format3.parse(result.get(5).replace("%2F", ""));
-					String fecha = format.format(d);
-					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new ScantechTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-					}
-					// Renombrar el Fichero
-					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
-					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
-					if (file.renameTo(file2)) {
-						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
-					}
-
-					pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
-
-					Scanntech carnelandia = new Scanntech();
-					carnelandia.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				} catch (ParseException e) {
-					log.error(e.getMessage());
+		// Natal 4
+		// 215913850013
+		case "215913850013":
+			mercado = "Natal";
+			log.info(MSG_MERCADO, mercado);
+			try {
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
+				num = Integer.parseInt(result.get(3));
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
+				}
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 				}
 
-				break;
+				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-			// Carnelandia
-			// 211229400017
-			case "211229400017" :
-				mercado = "Carnelandia";
-				log.info(MSG_MERCADO, mercado);
-				try {
-					Date d;
-					d = format3.parse(result.get(5).replace("%2F", ""));
-					String fecha = format.format(d);
-					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new ScantechTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-					}
-					// Renombrar el Fichero
-					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
-					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
-					if (file.renameTo(file2)) {
-						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
-					}
+				Scanntech carnelandia = new Scanntech();
+				carnelandia.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (ParseException e) {
+				log.error(e.getMessage());
+			}
 
-					pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
-
-					Scanntech carnelandia = new Scanntech();
-					carnelandia.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				} catch (ParseException e) {
-					log.error(e.getMessage());
+			break;
+		// Natal
+		// 217154870010
+		case "217154870010":
+			mercado = "Natal";
+			log.info(MSG_MERCADO, mercado);
+			try {
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
+				num = Integer.parseInt(result.get(3));
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
+				}
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 				}
 
-				break;
+				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-			// SuperUSAColonia
-			// 216270160018
-			case "216270160018" :
-				mercado = "SuperUSAColonia";
-				log.info(MSG_MERCADO, mercado);
-				try {
-					Date d;
-					d = format3.parse(result.get(5).replace("%2F", ""));
-					String fecha = format.format(d);
-					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new ScantechTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-					}
-					// Renombrar el Fichero
-					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
-					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
-					if (file.renameTo(file2)) {
-						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
-					}
+				Scanntech carnelandia = new Scanntech();
+				carnelandia.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (ParseException e) {
+				log.error(e.getMessage());
+			}
 
-					pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+			break;
 
-					Scanntech carnelandia = new Scanntech();
-					carnelandia.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				} catch (ParseException e) {
-					log.error(e.getMessage());
+		// Carnelandia
+		// 211229400017
+		case "211229400017":
+			mercado = "Carnelandia";
+			log.info(MSG_MERCADO, mercado);
+			try {
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
+				num = Integer.parseInt(result.get(3));
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
+				}
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 				}
 
-				break;
+				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-			// SuperMercadoEconomico
-			// 213938880017
-			case "213938880017" :
-				mercado = "SuperMercadoEconomico";
-				log.info(MSG_MERCADO, mercado);
+				Scanntech carnelandia = new Scanntech();
+				carnelandia.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (ParseException e) {
+				log.error(e.getMessage());
+			}
 
-				try {
-					// Descarga el Fichero
+			break;
 
-					Date d;
-					d = format3.parse(result.get(5).replace("%2F", ""));
-					String fecha = format.format(d);
-					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new ScantechTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-					}
-					// Renombrar el Fichero
-					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
-					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
-					if (file.renameTo(file2)) {
-						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
-					}
-
-					pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
-
-					Scanntech elNaranjo = new Scanntech();
-					elNaranjo.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				} catch (ParseException e) {
-					log.error(e.getMessage());
+		// SuperUSAColonia
+		// 216270160018
+		case "216270160018":
+			mercado = "SuperUSAColonia";
+			log.info(MSG_MERCADO, mercado);
+			try {
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
+				num = Integer.parseInt(result.get(3));
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
+				}
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 				}
 
-				break;
+				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-			// SuperAriel
-			// 213304860012
-			case "213304860012" :
-				mercado = "SuperAriel";
-				log.info(MSG_MERCADO, mercado);
-				try {
+				Scanntech carnelandia = new Scanntech();
+				carnelandia.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (ParseException e) {
+				log.error(e.getMessage());
+			}
 
-					Date d;
-					d = format3.parse(result.get(5).replace("%2F", ""));
-					String fecha = format.format(d);
-					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new ScantechTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-					}
-					// Renombrar el Fichero
-					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
-					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
-					if (file.renameTo(file2)) {
-						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
-					}
+			break;
 
-					pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+		// SuperMercadoEconomico
+		// 213938880017
+		case "213938880017":
+			mercado = "SuperMercadoEconomico";
+			log.info(MSG_MERCADO, mercado);
 
-					Scanntech superAriel = new Scanntech();
-					superAriel.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				} catch (ParseException e) {
-					log.error(e.getMessage());
+			try {
+				// Descarga el Fichero
+
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
+				num = Integer.parseInt(result.get(3));
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
 				}
-				break;
-
-			// Montserrat Panaderia
-			// 214783760011
-			case "214783760011" :
-				mercado = "PanaderiaMontserrat";
-				log.info(MSG_MERCADO, mercado);
-				try {
-
-					Date d;
-					d = format2.parse(result.get(5));
-					String fecha = format.format(d);
-					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new ScantechTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-					}
-					// Renombrar el Fichero
-					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
-					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
-					if (file.renameTo(file2)) {
-						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
-					}
-
-					pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
-
-					Scanntech montserrat = new Scanntech();
-					montserrat.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				} catch (ParseException e) {
-					log.error(e.getMessage());
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 				}
 
-				break;
+				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-			// Mercado Natural
-			// 215058860011
-			case "215058860011" :
-				mercado = "MercadoNatural";
-				log.info(MSG_MERCADO, mercado);
-				try {
-					Date d;
-					d = format3.parse(result.get(5).replace("%2F", ""));
-					String fecha = format.format(d);
-					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new ScantechTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-					}
+				Scanntech elNaranjo = new Scanntech();
+				elNaranjo.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (ParseException e) {
+				log.error(e.getMessage());
+			}
 
-					// Renombrar el Fichero
-					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
-					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
-					if (file.renameTo(file2)) {
-						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
-					}
+			break;
 
-					pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+		// SuperAriel
+		// 213304860012
+		case "213304860012":
+			mercado = "SuperAriel";
+			log.info(MSG_MERCADO, mercado);
+			try {
 
-					Scanntech mercadoNatural = new Scanntech();
-					mercadoNatural.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				} catch (Exception e) {
-					log.error(e.getMessage());
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
+				num = Integer.parseInt(result.get(3));
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
+				}
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 				}
 
-				break;
-			// DonPaulino
-			// 211412910010
-			case "211412910010" :
-				mercado = "DonPaulino";
-				log.info(MSG_MERCADO, mercado);
-				try {
-					Date d;
-					d = format2.parse(result.get(5));
-					String fecha = format.format(d);
-					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new ScantechTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-					}
+				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-					// Renombrar el Fichero
-					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
-					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
-					if (file.renameTo(file2)) {
-						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
-					}
+				Scanntech superAriel = new Scanntech();
+				superAriel.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (ParseException e) {
+				log.error(e.getMessage());
+			}
+			break;
 
-					pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+		// Montserrat Panaderia
+		// 214783760011
+		case "214783760011":
+			mercado = "PanaderiaMontserrat";
+			log.info(MSG_MERCADO, mercado);
+			try {
 
-					Scanntech donPaulino = new Scanntech();
-					donPaulino.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				} catch (Exception e) {
-					log.error(e.getMessage());
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
+				num = Integer.parseInt(result.get(3));
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
 				}
-				break;
-
-			// Distravi
-			// 211223740010
-			case "211223740010" :
-				mercado = "Distravi";
-				log.info(MSG_MERCADO, mercado);
-				try {
-					Date d;
-					d = format3.parse(result.get(5).replace("%2F", ""));
-					String fecha = format.format(d);
-					num = Integer.parseInt(result.get(3));
-					if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString() + ".pdf").exists()) {
-						ObtenerPDF obtenerPDF = new ScantechTest();
-						obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha, result.get(6).substring(0, 6));
-					}
-
-					// Renombrar el Fichero
-					File file = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
-					File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + result.get(3) + ".pdf");
-					if (file.renameTo(file2)) {
-						log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
-					}
-
-					pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
-
-					Scanntech ditravis = new Scanntech();
-					ditravis.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				} catch (Exception e) {
-					log.error(e.getMessage());
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
 				}
-				break;
 
-			case "AlmaNatural" :
-				mercado = "AlmaNatural";
-				log.info(MSG_MERCADO, mercado);
-				AlmaNatural almaNatural = new AlmaNatural();
-				almaNatural.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				break;
+				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
 
-			case "Itau" :
-				mercado = "Banco Itau";
-				log.info(MSG_MERCADO, mercado);
-				Itau itau = new Itau();
-				itau.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
-				break;
+				Scanntech montserrat = new Scanntech();
+				montserrat.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (ParseException e) {
+				log.error(e.getMessage());
+			}
 
-			default :
-				break;
+			break;
+
+		// Mercado Natural
+		// 215058860011
+		case "215058860011":
+			mercado = "MercadoNatural";
+			log.info(MSG_MERCADO, mercado);
+			try {
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
+				num = Integer.parseInt(result.get(3));
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
+				}
+
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
+				}
+
+				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+
+				Scanntech mercadoNatural = new Scanntech();
+				mercadoNatural.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+
+			break;
+		// DonPaulino
+		// 211412910010
+		case "211412910010":
+			mercado = "DonPaulino";
+			log.info(MSG_MERCADO, mercado);
+			try {
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
+				num = Integer.parseInt(result.get(3));
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
+				}
+
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
+				}
+
+				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+
+				Scanntech donPaulino = new Scanntech();
+				donPaulino.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+			break;
+
+		// Distravi
+		// 211223740010
+		case "211223740010":
+			mercado = "Distravi";
+			log.info(MSG_MERCADO, mercado);
+			try {
+				Date d;
+				d = format3.parse(result.get(5).replace("%2F", ""));
+				String fecha = format.format(d);
+				num = Integer.parseInt(result.get(3));
+				if (!new File(recurso.getResourse() + FILE_SEPARATOR + result.get(1) + result.get(2) + num.toString()
+						+ ".pdf").exists()) {
+					ObtenerPDF obtenerPDF = new ScantechTest();
+					obtenerPDF.getPDF(result.get(0), result.get(2), result.get(3), result.get(4), fecha,
+							result.get(6).substring(0, 6));
+				}
+
+				// Renombrar el Fichero
+				File file = new File(
+						directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR + "cfe.pdf");
+				File file2 = new File(directorioRaiz + FILE_SEPARATOR + recurso.getResourse() + FILE_SEPARATOR
+						+ result.get(1) + result.get(2) + result.get(3) + ".pdf");
+				if (file.renameTo(file2)) {
+					log.info(MSG_RENOMBRAR_ARCH, file.getName(), file2.getName());
+				}
+
+				pdf = recurso.getResourse() + result.get(1) + result.get(2) + result.get(3) + ".pdf";
+
+				Scanntech ditravis = new Scanntech();
+				ditravis.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+			break;
+
+		case "AlmaNatural":
+			mercado = "AlmaNatural";
+			log.info(MSG_MERCADO, mercado);
+			AlmaNatural almaNatural = new AlmaNatural();
+			almaNatural.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			break;
+
+		case "Itau":
+			mercado = "Banco Itau";
+			log.info(MSG_MERCADO, mercado);
+			Itau itau = new Itau();
+			itau.leerDatos(pdf, recurso.getOutput() + mercado + ".txt");
+			break;
+
+		default:
+			break;
 		}
 
 	}

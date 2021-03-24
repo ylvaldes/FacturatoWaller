@@ -9,8 +9,8 @@ import java.net.URL;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
@@ -24,7 +24,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
 public class PDFFrom {
-	private static final Logger log = LoggerFactory.getLogger(PDFFrom.class);
+	private static final Logger log =  LogManager.getLogger(PDFFrom.class);
 
 	private static void hTML(String filename) throws ParserConfigurationException, IOException, DocumentException {
 		log.info("PDFFromHTML()");
