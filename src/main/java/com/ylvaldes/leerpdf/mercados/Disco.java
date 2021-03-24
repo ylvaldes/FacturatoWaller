@@ -108,24 +108,26 @@ public class Disco implements IMercados {
 			int postFin = utilString.buscarString("TOTALES", lineasPDF);
 			int posTotal = utilString.buscarString("Pago total", lineasPDF);
 			int postLey19 = utilString.buscarString("Desc. Ley   19210", lineasPDF);
-			int postFechaHora = utilString.buscarFechaHora(lineasPDF);
+			int postFechaHora = utilString.buscarString("No.Ticket", lineasPDF);
 			//int postFechaHora = utilString.buscarString("No.Ticket", lineasPDF);
 			int postCodSeg = utilString.buscarString("Cod. de Seguridad:", lineasPDF);
 
 			codSeguridad = lineasPDF.get(postCodSeg).trim().split(":")[1];
 
-			//log.info(lineasPDF.get(postFechaHora + 1).split("       ")[1]);
-			log.info(lineasPDF.get(postFechaHora).trim());
-			String fHora=lineasPDF.get(postFechaHora).trim();
+			if (lineasPDF.get(postFechaHora + 2).contains("Hoja")) {
+				postFechaHora = postFechaHora + 20;
+			}
+
+			log.info(lineasPDF.get(postFechaHora + 1).split("   ")[1]);
 			try {
- 				if (fHora!= " ") {
-					fecha = new SimpleDateFormat(recurso.getPatternFormatH()).parse(fHora);
-				} 
-				else {
-					fecha = new SimpleDateFormat(recurso.getPatternFormatS()).parse(lineasPDF.get(5));
+				if (lineasPDF.get(postFechaHora + 1).split("   ")[1] == " ") {
+					fecha = new SimpleDateFormat(recurso.getPatternFormatH())
+							.parse(lineasPDF.get(postFechaHora + 1).split("   ")[1]);
+				} else {
+					fecha = new SimpleDateFormat(recurso.getPatternFormatH())
+							.parse(lineasPDF.get(postFechaHora + 1).split("   ")[2]);
 				}
 			} catch (ParseException e) {
-				
 				log.error(e.getMessage());
 			}
 
