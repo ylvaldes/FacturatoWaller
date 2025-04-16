@@ -9,6 +9,12 @@ public class TataTest extends ObtenerPDF {
 		// Step # | name | target | value | comment
 		// 1 | open | http://www.institucional.tata.com.uy/consulta-e-ticket | |
 		driver.get("http://www.institucional.tata.com.uy/consulta-e-ticket");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+		}
 		// 2 | setWindowSize | 1936x1066 | |
 		driver.manage().window().maximize();
 		// 3 | selectFrame | index=0 | |
@@ -32,9 +38,9 @@ public class TataTest extends ObtenerPDF {
 		vars.put("window_handles", driver.getWindowHandles());
 		// 11 | selectWindow | handle=${win276} | |
 		driver.findElement(By.name("Enviar")).click();
-		vars.put("win276", waitForWindow(2000));
+		vars.put("win276", waitForWindow(6000));
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(12000);
 		} catch (InterruptedException e) {
 
 			e.printStackTrace();

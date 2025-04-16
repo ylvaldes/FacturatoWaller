@@ -9,6 +9,8 @@ import java.io.Writer;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.io.RandomAccessFile;
 import org.apache.pdfbox.pdfparser.PDFParser;
@@ -22,8 +24,6 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.fit.pdfdom.PDFDomTree;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
@@ -31,7 +31,7 @@ import com.itextpdf.text.pdf.parser.SimpleTextExtractionStrategy;
 import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
 public class PDF2 {
-	private static final Logger log = LoggerFactory.getLogger(PDF2.class);
+	private static final Logger log =  LogManager.getLogger(PDF2.class);
 
 	/*
 	 * Comvierte el documento PDF pasado por parametro a HTML

@@ -8,7 +8,7 @@ public class ScantechTest extends ObtenerPDF {
 		// Test name: Scantech
 		// Step # | name | target | value | comment
 		// 1 | open | http://efactura1.scanntech.com/products.eticket.consultaQR/ | |
-		driver.get("http://efactura1.scanntech.com/products.eticket.consultaQR/");
+		driver.get("http://efactura.scanntech.com/products.eticket.consultaQR/");
 		// 2 | type | id=rut | 211229400017 |
 		driver.findElement(By.id("rut")).sendKeys(rut);
 		// 3 | select | id=tipoCfe | label=e-Ticket |
@@ -38,7 +38,7 @@ public class ScantechTest extends ObtenerPDF {
 		vars.put("window_handles", driver.getWindowHandles());
 		// 11 | selectWindow | handle=${win6107} | |
 		driver.findElement(By.name("pdf")).click();
-		vars.put("win6107", waitForWindow(2000));
+		vars.put("win6107", waitForWindow(3000));
 		driver.switchTo().window(vars.get("win6107").toString());
 		tearDown();
 	}

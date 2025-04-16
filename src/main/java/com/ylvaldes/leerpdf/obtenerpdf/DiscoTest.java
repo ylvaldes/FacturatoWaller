@@ -10,7 +10,7 @@ public class DiscoTest extends ObtenerPDF {
 		// Test name: Disco
 		// Step # | name | target | value | comment
 		// 1 | open | https://institucional.disco.com.uy/index.php/consulta-cfe | |
-		driver.get("https://institucional.disco.com.uy/index.php/consulta-cfe");
+		driver.get("https://www.disco.com.uy/consulte-su-ticket");
 		// 3 | selectFrame | index=0 | |
 		driver.switchTo().frame(0);
 		// 4 | doubleClick | id=rut | |

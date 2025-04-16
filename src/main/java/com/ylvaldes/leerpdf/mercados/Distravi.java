@@ -11,8 +11,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ylvaldes.leerpdf.archivos.Excel;
 import com.ylvaldes.leerpdf.archivos.Txt;
@@ -22,7 +22,7 @@ import com.ylvaldes.leerpdf.utiles.LoadResourceConfLeerPDF;
 import com.ylvaldes.leerpdf.utiles.UtilesString;
 
 public class Distravi implements IMercados {
-	private static final Logger log = LoggerFactory.getLogger(Distravi.class);
+	private static final Logger log =  LogManager.getLogger(Distravi.class);
 	private final static LoadResourceConfLeerPDF recurso = new LoadResourceConfLeerPDF();
 	private static DecimalFormat df2 = new DecimalFormat("#.##");
 	// Objetos

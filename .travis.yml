@@ -10,7 +10,8 @@ addons:
     organization: "ylvaldes-github"
     token:
         secure: "5a065e8d4122f1597ff44ca2293f5e814144025f"
-
+before_install:
+  - chmod +x mvnw
 script: 
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=ylvaldes_FacturatoWaller
 
