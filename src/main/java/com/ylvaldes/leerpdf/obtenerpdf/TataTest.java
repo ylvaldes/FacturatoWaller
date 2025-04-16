@@ -38,9 +38,9 @@ public class TataTest extends ObtenerPDF {
 		vars.put("window_handles", driver.getWindowHandles());
 		// 11 | selectWindow | handle=${win276} | |
 		driver.findElement(By.name("Enviar")).click();
-		vars.put("win276", waitForWindow(2000));
+		vars.put("win276", waitForWindow(6000));
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(12000);
 		} catch (InterruptedException e) {
 
 			e.printStackTrace();

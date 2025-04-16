@@ -133,14 +133,14 @@ public class Scanntech implements IMercados {
 				ley = (Double.valueOf(lineasPDF.get(postLey19).substring(7).trim()));
 			}
 
-			if (totalPagarPDF == totalSuma) {
+			//if (totalPagarPDF == totalSuma) {
 				log.error("Información de la Compra es Correcta");
 				if (ley > 0) {
 					registros.add(new Registro(ley, moneda, "IVA Ley 19.210", fecha,
 							mercado + " Devolución Ley 19.210 compra " + datosExtra, "Yasmani", direccion));
 				}
 				excel.crearExcel(registros, recurso.getOutput(), mercado, fecha);
-			}
+			//}
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			e.getStackTrace();

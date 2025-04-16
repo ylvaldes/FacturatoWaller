@@ -38,7 +38,7 @@ public class ScantechTest extends ObtenerPDF {
 		vars.put("window_handles", driver.getWindowHandles());
 		// 11 | selectWindow | handle=${win6107} | |
 		driver.findElement(By.name("pdf")).click();
-		vars.put("win6107", waitForWindow(2000));
+		vars.put("win6107", waitForWindow(3000));
 		driver.switchTo().window(vars.get("win6107").toString());
 		tearDown();
 	}

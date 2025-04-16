@@ -29,7 +29,7 @@ public abstract class ObtenerPDF implements IObtenerPDF {
 			String rutaProyecto = System.getProperty("user.dir");
 			rutaProyecto += "\\" + recurso.getResourse();
 
-			System.setProperty("webdriver.chrome.driver", recurso.getResourse() + "\\WebDriver\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", recurso.getResourse() + "\\WebDriver\\chromedriver1.exe");
 			ChromeOptions options = new ChromeOptions();
 			Map<String, Object> prefs = new HashMap<String, Object>();
 			prefs.put("download.default_directory", rutaProyecto);
